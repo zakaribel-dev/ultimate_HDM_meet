@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en" class="no-js">
+    <head>
+        <!-- Title and Icon -->
+
+        <title>HDM Meet</title>
+        <link rel="shortcut icon" href="../images/little_logo_blue.svg" />
+        <link rel="apple-touch-icon" href="../images/little_logo_blue.svg" />
+
+        <!-- Meta Information -->
+
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <meta
+            name="description"
+            content="MiroTalk powered by WebRTC, Real-time Simple Secure Fast video calls, chat and screen sharing capabilities in the browser, from your mobile or desktop."
+        />
+        <meta
+            name="keywords"
+            content="webrtc, self hosted, voip, sip, real-time communications, chat, messaging, meet, webrtc stun, webrtc turn, video meeting, video chat, video conference, multi video chat, multi video conference, peer to peer, p2p, rtc, alternative to, zoom, microsoft teams, google meet, jitsi, meeting"
+        />
+
+        <!-- https://ogp.me -->
+
+        <meta property="og:type" content="app-webrtc" />
+        <meta property="og:site_name" content="MiroTalk" />
+        <meta property="og:title" content="Click the link to make a call." />
+        <meta
+            property="og:description"
+            content="MiroTalk calling provides real-time HD quality and latency simply not available with traditional technology."
+        />
+        <meta property="og:image" content="https://p2p.mirotalk.com/images/preview.png" />
+        <meta property="og:url" content="https://p2p.mirotalk.com" />
+
+        <!-- xss -->
+
+        <script src="https://rawgit.com/leizongmin/js-xss/master/dist/xss.js"></script>
+
+        <!-- https://cdnjs.com/libraries/font-awesome -->
+        <link rel="stylesheet" href="/doc/fonts/bespoke-stencil.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,300;1,500&display=swap"
+            rel="stylesheet">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+
+        <!-- StyleSheet -->
+
+        <!-- <link rel="stylesheet" href="../css/snow.css" /> -->
+        <link rel="stylesheet" href="../css/landing.css" />
+        <link rel="stylesheet" href="../css/newcall.css" />
+        <script src="https://kit.fontawesome.com/90363de2b4.js" crossorigin="anonymous"></script>
+
+        <!-- JavaScripts -->
+
+        <script async src="../js/umami.js"></script>
+    </head>
+    <body>
+
+                <div class="grid-accueil">
+
+                    <header class="section-logo">
+                        <div class="div-logo">
+                            <img class="logo-accueil" src="../images/little_logo.svg" alt="" title="HDM Meet"> 
+                        </div>
+                    </header>
+            
+                    <section>
+                        <header >
+                            <nav class="nav-acceuil">
+                                <a class="btn-connexion-admin"  href="#">
+                                    Admin
+                                </a>
+                            </nav>
+                        </header>
+                   
+            
+                        <div id="lastRoomContainer" class="last-room">
+                            <span>Votre dernière conférence :</span>
+                            <a id="lastRoom"></a>
+                        </div>
+                        <script>
+                            const lastRoomContainer = document.getElementById('lastRoomContainer');
+                            const lastRoom = document.getElementById('lastRoom');
+                            const lastRoomName = window.localStorage.lastRoom
+                                ? window.localStorage.lastRoom
+                                : '';
+                            if (lastRoomName) {
+                                lastRoomContainer.style.display = 'inline-flex';
+                                lastRoom.setAttribute('href', '/join/' + lastRoomName);
+                                lastRoom.innerText = lastRoomName;
+                            }
+                        </script>
+                        <h1 class="titre-accueil espace-accueil">Bienvenue sur HDM Meet</h1>
+                        <h2 class="sous-titre-acceuil">L’application HDM de réunions en ligne </h2>
+
+                         <input
+                          id="roomName"
+                          class="form-input"
+                          type="text"
+                          maxlength="32"
+                          style="border-radius: 6px"
+                          placeholder="Veuillez entrer un nom de conférence"
+                         />
+
+                        <div class="div-btn">
+                            
+                            <a class="btn-connexion button button-primary br-6 pulse "  onclick="joinRoom()" > 
+
+                                Rejoindre conférence
+                          </a>
+                         
+                        </div>             
+                    </section>
+            
+                </div>
+
+                             <script>
+                                document.getElementById('roomName').onkeyup = (e) => {
+                                    if (e.keyCode === 13) {
+                                        e.preventDefault();
+                                        joinRoom();
+                                    }
+                                };
+                          
+                        
+                                function joinRoom() {
+                                    const roomName = filterXSS(document.getElementById('roomName').value);
+                                    if (roomName) {
+                                        window.location.href = '/join/' + roomName;
+                                        window.localStorage.lastRoom = roomName;
+                                    } else {
+                                        alert('Choisissez un nom de conférence svp.');
+                                    }
+                                }
+                            </script>
+            </div>
+
+        <!-- <script defer src="../js/snow.js"></script> -->
+        <script defer src="../js/common.js"></script>
+        <script defer src="../js/landing.js"></script>
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
+    </body>
+</html>
