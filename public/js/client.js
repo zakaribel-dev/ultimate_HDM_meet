@@ -810,7 +810,7 @@ function setButtonsToolTip() {
     setTippy(videoUrlCloseBtn, 'Fermer le lecteur vidéo', 'bas');
     setTippy(videoAudioCloseBtn, 'Fermer le lecteur vidéo', 'bas');
     setTippy(msgerVideoUrlBtn, 'Partager une vidéo ou un audio avec tous les participants', 'haut');
-    
+
 }
 
 /**
@@ -1388,7 +1388,7 @@ async function whoAreYou() {
         inputPlaceholder: 'Entrez votre nom ',
         inputAttributes: { maxlength: 32 },
         inputValue: window.localStorage.peer_name ? window.localStorage.peer_name : '',
-        html: initUser, 
+        html: initUser,
         confirmButtonText: `Rejoindre conférence`,
         customClass: { popup: 'init-modal-size' },
         showClass: { popup: 'animate__animated animate__fadeInDown' },
@@ -2675,7 +2675,7 @@ async function loadLocalMedia(stream, kind) {
                 setTippy(myVideoZoomOutBtn, 'Zoom arrière sur la vidéo', 'bottom');
                 setTippy(myVideoPinBtn, 'Épingler/Désépingler la vidéo', 'bottom');
                 setTippy(myVideoMirrorBtn, 'Activer/désactiver le miroir vidéo', 'bottom');
-                
+
             }
 
             // my video avatar image
@@ -2952,22 +2952,23 @@ async function loadRemoteMediaStream(stream, peers, peer_id, kind) {
 
             // no mobile devices
             if (!isMobileDevice) {
-                setTippy(remotePeerName, 'Participant name', 'bottom');
-                setTippy(remoteHandStatusIcon, 'Participant hand is raised', 'bottom');
-                setTippy(remoteVideoStatusIcon, 'Participant video is on', 'bottom');
-                setTippy(remoteAudioStatusIcon, 'Participant audio is on', 'bottom');
+                setTippy(remotePeerName, 'Nom du participant', 'bottom');
+                setTippy(remoteHandStatusIcon, 'La main du participant est levée', 'bottom');
+                setTippy(remoteVideoStatusIcon, 'La vidéo du participant est activée', 'bottom');
+                setTippy(remoteAudioStatusIcon, 'L\'audio du participant est activé', 'bottom');
                 setTippy(remoteAudioVolume, '🔊 Volume', 'top');
-                setTippy(remoteVideoAudioUrlBtn, 'Send Video or Audio', 'bottom');
-                setTippy(remotePrivateMsgBtn, 'Send private message', 'bottom');
-                setTippy(remoteFileShareBtn, 'Send file', 'bottom');
-                setTippy(remoteVideoToImgBtn, 'Take a snapshot', 'bottom');
-                setTippy(remotePeerKickOut, 'Kick out', 'bottom');
-                setTippy(remoteVideoFullScreenBtn, 'Full screen mode', 'bottom');
-                setTippy(remoteVideoZoomInBtn, 'Zoom in video', 'bottom');
-                setTippy(remoteVideoZoomOutBtn, 'Zoom out video', 'bottom');
-                setTippy(remoteVideoPiPBtn, 'Toggle picture in picture', 'bottom');
-                setTippy(remoteVideoPinBtn, 'Toggle Pin video', 'bottom');
-                setTippy(remoteVideoMirrorBtn, 'Toggle video mirror', 'bottom');
+                setTippy(remoteVideoAudioUrlBtn, 'Envoyer vidéo ou audio', 'bottom');
+                setTippy(remotePrivateMsgBtn, 'Envoyer un message privé', 'bottom');
+                setTippy(remoteFileShareBtn, 'Envoyer un fichier', 'bottom');
+                setTippy(remoteVideoToImgBtn, 'Prendre une capture d\'écran', 'bottom');
+                setTippy(remotePeerKickOut, 'Exclure', 'bottom');
+                setTippy(remoteVideoFullScreenBtn, 'Mode plein écran', 'bottom');
+                setTippy(remoteVideoZoomInBtn, 'Zoom avant dans la vidéo', 'bottom');
+                setTippy(remoteVideoZoomOutBtn, 'Zoom arrière dans la vidéo', 'bottom');
+                setTippy(remoteVideoPiPBtn, 'Basculer en mode image dans l\'image', 'bottom');
+                setTippy(remoteVideoPinBtn, 'Basculer en mode vidéo épinglée', 'bottom');
+                setTippy(remoteVideoMirrorBtn, 'Basculer en mode miroir pour la vidéo', 'bottom');
+
             }
 
             // my video avatar image
@@ -4062,7 +4063,7 @@ function setChatRoomBtn() {
     // show msger participants section
     msgerCPBtn.addEventListener('click', (e) => {
         if (!thereArePeerConnections()) {
-            return userLog('info', 'No participants detected');
+            return userLog('info', 'Pas de participant détecté');
         }
         elemDisplay(msgerCP, true, 'flex');
     });
@@ -7034,7 +7035,7 @@ function sanitizeHtml(input) {
 function isHtml(str) {
     let a = document.createElement('div');
     a.innerHTML = str;
-    for (let c = a.childNodes, i = c.length; i--; ) {
+    for (let c = a.childNodes, i = c.length; i--;) {
         if (c[i].nodeType == 1) return true;
     }
     return false;
@@ -7048,11 +7049,11 @@ function isHtml(str) {
 function isValidHttpURL(url) {
     const pattern = new RegExp(
         '^(https?:\\/\\/)?' + // protocol
-            '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-            '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-            '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-            '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-            '(\\#[-a-z\\d_]*)?$',
+        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+        '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+        '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+        '(\\#[-a-z\\d_]*)?$',
         'i', // fragment locator
     );
     return pattern.test(url);
@@ -7345,7 +7346,7 @@ async function updateMyPeerName() {
     // prevent XSS injection to remote peer
     if (isHtml(myPeerNameSet.value)) {
         myPeerNameSet.value = '';
-        return userLog('warning', 'Invalid name!');
+        return userLog('warning', 'Nom invalide !');
     }
 
     const myNewPeerName = myPeerNameSet.value;
@@ -7368,7 +7369,7 @@ async function updateMyPeerName() {
     setPeerAvatarImgName('myVideoAvatarImage', myPeerName);
     setPeerAvatarImgName('myProfileAvatar', myPeerName);
     setPeerChatAvatarImgName('right', myPeerName);
-    userLog('toast', 'My name changed to ' + myPeerName);
+    userLog('toast', 'Mon nom est changé en ' + myPeerName);
 }
 
 /**
@@ -7434,13 +7435,13 @@ function setMyHandStatus() {
         // Raise hand
         setColor(myHandBtn, 'green');
         elemDisplay(myHandStatusIcon, true);
-        setTippy(myHandBtn, 'Raise your hand', placement);
+        setTippy(myHandBtn, 'Lever la main', placement);
         playSound('raiseHand');
     } else {
         // Lower hand
         setColor(myHandBtn, 'black');
         elemDisplay(myHandStatusIcon, false);
-        setTippy(myHandBtn, 'Lower your hand', placement);
+        setTippy(myHandBtn, 'Baisser la main', placement);
     }
     emitPeerStatus('hand', myHandStatus);
 }
@@ -7456,8 +7457,8 @@ function setMyAudioStatus(status) {
     myAudioStatusIcon.className = audioClassName;
     // send my audio status to all peers in the room
     emitPeerStatus('audio', status);
-    setTippy(myAudioStatusIcon, status ? 'My audio is on' : 'My audio is off', 'bottom');
-    setTippy(audioBtn, status ? 'Stop the audio' : 'Start the audio', placement);
+    setTippy(myAudioStatusIcon, status ? 'Mon audio est activé' : 'on audio est désactivé', 'bottom');
+    setTippy(audioBtn, status ? 'Arrêter l\'audio' : 'Commencer l\'audio', placement);
     status ? playSound('on') : playSound('off');
 }
 
@@ -7480,8 +7481,8 @@ function setMyVideoStatus(status) {
     emitPeerStatus('video', status);
 
     if (!isMobileDevice) {
-        if (myVideoStatusIcon) setTippy(myVideoStatusIcon, status ? 'My video is on' : 'My video is off', 'bottom');
-        setTippy(videoBtn, status ? 'Stop the video' : 'Start the video', placement);
+        if (myVideoStatusIcon) setTippy(myVideoStatusIcon, status ? 'Ma vidéo est activée' : 'Ma vidéo est désactivée', 'bottom');
+        setTippy(videoBtn, status ? 'Arrêter la vidéo' : 'Commencer la vidéo', placement);
     }
 
     if (status) {
@@ -7529,7 +7530,7 @@ function setPeerHandStatus(peer_id, peer_name, status) {
     const peerHandStatus = getId(peer_id + '_handStatus');
     if (status) {
         elemDisplay(peerHandStatus, true);
-        userLog('toast', `${icons.user} ${peer_name} \n has raised the hand!`);
+        userLog('toast', `${icons.user} ${peer_name} \n a levé la main !`);
         playSound('raiseHand');
     } else {
         elemDisplay(peerHandStatus, false);
@@ -7546,7 +7547,7 @@ function setPeerAudioStatus(peer_id, status) {
     const peerAudioVolume = getId(peer_id + '_audioVolume');
     if (peerAudioStatus) {
         peerAudioStatus.className = status ? className.audioOn : className.audioOff;
-        setTippy(peerAudioStatus, status ? 'Participant audio is on' : 'Participant audio is off', 'bottom');
+        setTippy(peerAudioStatus, status ? 'L\'audio du participant est activé' : 'L\'audio du participant est désactivé', 'bottom');
         status ? playSound('on') : playSound('off');
     }
     if (peerAudioVolume) {
@@ -7586,7 +7587,7 @@ function handlePeerAudioBtn(peer_id) {
         if (peerAudioBtn.className === className.audioOn) {
             isPresenter
                 ? disablePeer(peer_id, 'audio')
-                : msgPopup('warning', 'Only the presenter can mute participants', 'top-end', 4000);
+                : msgPopup('warning', 'Seul le/la présentateur/trice peut désasctiver le son d\'un utilisateur', 'top-end', 4000);
         }
     };
 }
@@ -7602,7 +7603,7 @@ function handlePeerVideoBtn(peer_id) {
         if (peerVideoBtn.className === className.videoOn) {
             isPresenter
                 ? disablePeer(peer_id, 'video')
-                : msgPopup('warning', 'Only the presenter can hide participants', 'top-end', 4000);
+                : msgPopup('warning', 'Seul le/la présentateur/trice peut désasctiver la vidéo d\'un utilisateur', 'top-end', 4000);
         }
     };
 }
@@ -7630,10 +7631,10 @@ function sendPrivateMsgToPeer(toPeerId, toPeerName) {
         background: swBg,
         position: 'center',
         imageUrl: images.message,
-        title: 'Send private message',
+        title: 'Envoyer un message privé',
         input: 'text',
         showCancelButton: true,
-        confirmButtonText: `Send`,
+        confirmButtonText: `Envoyer`,
         showClass: { popup: 'animate__animated animate__fadeInDown' },
         hideClass: { popup: 'animate__animated animate__fadeOutUp' },
     }).then((result) => {
@@ -7649,10 +7650,10 @@ function sendPrivateMsgToPeer(toPeerId, toPeerName) {
                 myPeerName,
                 rightChatAvatar,
                 'right',
-                pMsg + '<br/><hr>Private message to ' + toPeerName,
+                pMsg + '<br/><hr>Message privé à ' + toPeerName,
                 true,
             );
-            userLog('toast', 'Message sent to ' + toPeerName + ' 👍');
+            userLog('toast', 'Message envoyé à' + toPeerName + ' 👍');
         }
     });
 }
@@ -7876,7 +7877,7 @@ function setMyAudioOff(peer_name) {
     myAudioStatus = localAudioMediaStream.getAudioTracks()[0].enabled;
     audioBtn.className = className.audioOff;
     setMyAudioStatus(myAudioStatus);
-    userLog('toast', `${icons.user} ${peer_name} \n has disabled your audio`);
+    userLog('toast', `${icons.user} ${peer_name} \n a désactivé votre son`);
     playSound('off');
 }
 
@@ -7890,7 +7891,7 @@ function setMyAudioOn(peer_name) {
     myAudioStatus = localAudioMediaStream.getAudioTracks()[0].enabled;
     audioBtn.className = className.audioOn;
     setMyAudioStatus(myAudioStatus);
-    userLog('toast', `${icons.user} ${peer_name} \n has enabled your audio`);
+    userLog('toast', `${icons.user} ${peer_name} \n a activé votre son`);
     playSound('on');
 }
 
@@ -7905,7 +7906,7 @@ function setMyVideoOff(peer_name) {
     myVideoStatus = localVideoMediaStream.getVideoTracks()[0].enabled;
     videoBtn.className = className.videoOff;
     setMyVideoStatus(myVideoStatus);
-    userLog('toast', `${icons.user} ${peer_name} \n has disabled your video`);
+    userLog('toast', `${icons.user} ${peer_name} \n a désactivé votre vidéo`);
     playSound('off');
 }
 
@@ -7915,31 +7916,31 @@ function setMyVideoOff(peer_name) {
  */
 function disableAllPeers(element) {
     if (!thereArePeerConnections()) {
-        return userLog('info', 'No participants detected');
+        return userLog('info', 'Pas de participant(s) détecté(s)');
     }
     Swal.fire({
         background: swBg,
         position: 'center',
         imageUrl: element == 'audio' ? images.audioOff : images.videoOff,
-        title: element == 'audio' ? 'Mute everyone except yourself?' : 'Hide everyone except yourself?',
+        title: element == 'audio' ? 'Couper le son de tout le monde sauf vous?' : 'Cacher la caméra de tout le monde sauf vous ?',
         text:
             element == 'audio'
-                ? "Once muted, you won't be able to unmute them, but they can unmute themselves at any time."
-                : "Once hided, you won't be able to unhide them, but they can unhide themselves at any time.",
+                ? "Une fois leurs son coupé, vous ne pourrez pas les rendre audibles, mais ils peuvent se rendre audibles à tout moment."
+                : "Une fois leur caméra cachée, vous ne pourrez pas les rendre visibles, mais ils peuvent se rendre visibles à tout moment.",
         showDenyButton: true,
-        confirmButtonText: element == 'audio' ? `Mute` : `Hide`,
-        denyButtonText: `Cancel`,
+        confirmButtonText: element == 'audio' ? `Couper` : `Cacher`,
+        denyButtonText: `Annuler`,
         showClass: { popup: 'animate__animated animate__fadeInDown' },
         hideClass: { popup: 'animate__animated animate__fadeOutUp' },
     }).then((result) => {
         if (result.isConfirmed) {
             switch (element) {
                 case 'audio':
-                    userLog('toast', 'Mute everyone 👍');
+                    userLog('toast', 'Tout le monde est muet 👍');
                     emitPeersAction('muteAudio');
                     break;
                 case 'video':
-                    userLog('toast', 'Hide everyone 👍');
+                    userLog('toast', 'Tout le monde est caché 👍');
                     emitPeersAction('hideVideo');
                     break;
             }
@@ -7952,17 +7953,17 @@ function disableAllPeers(element) {
  */
 function ejectEveryone() {
     if (!thereArePeerConnections()) {
-        return userLog('info', 'No participants detected');
+        return userLog('info', 'Pas de participants détecté');
     }
     Swal.fire({
         background: swBg,
         imageUrl: images.leave,
         position: 'center',
-        title: 'Eject everyone except yourself?',
-        text: 'Are you sure to want eject all participants from the room?',
+        title: 'Virer tout le monde sauf vous ?',
+        text: 'êtes vous sur de vouloir virer tout le monde sauf vous ?',
         showDenyButton: true,
-        confirmButtonText: `Yes`,
-        denyButtonText: `No`,
+        confirmButtonText: `Oui`,
+        denyButtonText: `Non`,
         showClass: { popup: 'animate__animated animate__fadeInDown' },
         hideClass: { popup: 'animate__animated animate__fadeOutUp' },
     }).then((result) => {
@@ -7979,7 +7980,7 @@ function ejectEveryone() {
  */
 function disablePeer(peer_id, element) {
     if (!thereArePeerConnections()) {
-        return userLog('info', 'No participants detected');
+        return userLog('info', 'Pas de participant détecté');
     }
     Swal.fire({
         background: swBg,
@@ -7999,11 +8000,11 @@ function disablePeer(peer_id, element) {
         if (result.isConfirmed) {
             switch (element) {
                 case 'audio':
-                    userLog('toast', 'Mute audio 👍');
+                    userLog('toast', 'Sons bien coupés👍');
                     emitPeerAction(peer_id, 'muteAudio');
                     break;
                 case 'video':
-                    userLog('toast', 'Hide video 👍');
+                    userLog('toast', 'Videos bien cachées 👍');
                     emitPeerAction(peer_id, 'hideVideo');
                     break;
             }
@@ -8038,9 +8039,9 @@ function handleRoomAction(config, emit = false) {
                     background: swBg,
                     imageUrl: images.locked,
                     input: 'text',
-                    inputPlaceholder: 'Set Room password',
+                    inputPlaceholder: 'Mettre un mot de passe à la conférence',
                     confirmButtonText: `OK`,
-                    denyButtonText: `Cancel`,
+                    denyButtonText: `Annuler`,
                     showClass: { popup: 'animate__animated animate__fadeInDown' },
                     hideClass: { popup: 'animate__animated animate__fadeOutUp' },
                     inputValidator: (pwd) => {
@@ -8076,13 +8077,13 @@ function handleRoomStatus(config) {
     switch (action) {
         case 'lock':
             playSound('locked');
-            userLog('toast', `${icons.user} ${peer_name} \n has 🔒 LOCKED the room by password`, 'top-end');
+            userLog('toast', `${icons.user} ${peer_name} \n a 🔒 verrouillé la conférence par un mot de passe`, 'top-end');
             elemDisplay(lockRoomBtn, false);
             elemDisplay(unlockRoomBtn, true);
             isRoomLocked = true;
             break;
         case 'unlock':
-            userLog('toast', `${icons.user} ${peer_name} \n has 🔓 UNLOCKED the room`, 'top-end');
+            userLog('toast', `${icons.user} ${peer_name} \n a 🔓 déverrouillé la conférence`, 'top-end');
             elemDisplay(unlockRoomBtn, false);
             elemDisplay(lockRoomBtn, true);
             isRoomLocked = false;
@@ -8106,8 +8107,8 @@ function handleRoomLocked() {
         background: swBg,
         position: 'center',
         imageUrl: images.locked,
-        title: 'Oops, Wrong Room Password',
-        text: 'The room is locked, try with another one.',
+        title: 'Oops, mauvais mot de passe de la chambre.',
+        text: 'La pièce est verrouillée, essayez-en une autre.',
         showDenyButton: false,
         confirmButtonText: `Ok`,
         showClass: { popup: 'animate__animated animate__fadeInDown' },
@@ -8128,14 +8129,14 @@ function handleUnlockTheRoom() {
         allowEscapeKey: false,
         background: swBg,
         imageUrl: images.locked,
-        title: 'Oops, Room is Locked',
+        title: 'Oops, la conférence est verrouillé',
         input: 'text',
-        inputPlaceholder: 'Enter the Room password',
+        inputPlaceholder: 'Entrez le mot de passe de la conférence',
         confirmButtonText: `OK`,
         showClass: { popup: 'animate__animated animate__fadeInDown' },
         hideClass: { popup: 'animate__animated animate__fadeOutUp' },
         inputValidator: (pwd) => {
-            if (!pwd) return 'Please enter the Room password';
+            if (!pwd) return 'Entrez le mot de passe de la conférence svp';
             thisRoomPassword = pwd;
         },
     }).then(() => {
@@ -8351,15 +8352,15 @@ function whiteboardAddObj(type) {
                 allowOutsideClick: false,
                 background: swBg,
                 position: 'center',
-                title: 'Select the PDF',
+                title: 'Selectionnez le PDF',
                 input: 'file',
                 inputAttributes: {
                     accept: wbPdfInput,
-                    'aria-label': 'Select the PDF',
+                    'aria-label': 'Selectionnez le PDF',
                 },
                 showDenyButton: true,
                 confirmButtonText: `OK`,
-                denyButtonText: `Cancel`,
+                denyButtonText: `Annuler`,
                 showClass: { popup: 'animate__animated animate__fadeInDown' },
                 hideClass: { popup: 'animate__animated animate__fadeOutUp' },
             }).then((result) => {
@@ -8716,11 +8717,11 @@ function confirmCleanBoard() {
         background: swBg,
         imageUrl: images.delete,
         position: 'center',
-        title: 'Clean the board',
-        text: 'Are you sure you want to clean the board?',
+        title: 'Nettoyer le tableau',
+        text: 'êtes vous sûr de vouloir nettoyer le tableau ?',
         showDenyButton: true,
-        confirmButtonText: `Yes`,
-        denyButtonText: `No`,
+        confirmButtonText: `Oui`,
+        denyButtonText: `Non`,
         showClass: { popup: 'animate__animated animate__fadeInDown' },
         hideClass: { popup: 'animate__animated animate__fadeOutUp' },
     }).then((result) => {
@@ -8974,7 +8975,7 @@ function selectFileToShare(peer_id, broadcast = false) {
     Swal.fire({
         allowOutsideClick: false,
         background: swBg,
-        imageAlt: 'mirotalk-file-sharing',
+        imageAlt: 'HDM partage de fichier',
         imageUrl: images.share,
         position: 'center',
         title: 'Share file',
@@ -9008,12 +9009,12 @@ function sendFileInformations(file, peer_id, broadcast = false) {
     if (fileToSend && fileToSend.size > 0) {
         // no peers in the room
         if (!thereArePeerConnections()) {
-            return userLog('info', 'No participants detected');
+            return userLog('info', 'Pas de participants détecté');
         }
 
         // prevent XSS injection to remote peer (fileToSend.name is read only)
         if (isHtml(fileToSend.name) || !isValidFileName(fileToSend.name))
-            return userLog('warning', 'Invalid file name!');
+            return userLog('warning', 'Nom de fichier invalide !');
 
         const fileInfo = {
             room_id: roomId,
@@ -9032,7 +9033,7 @@ function sendFileInformations(file, peer_id, broadcast = false) {
             myPeerName,
             rightChatAvatar,
             'right',
-            `${icons.fileSend} File send: 
+            `${icons.fileSend} Fichier envoyé : 
             <br/> 
             <ul>
                 <li>Name: ${fileToSend.name}</li>
@@ -9049,7 +9050,7 @@ function sendFileInformations(file, peer_id, broadcast = false) {
             sendFileData(peer_id, broadcast);
         }, 1000);
     } else {
-        userLog('error', 'File dragged not valid or empty.');
+        userLog('error', 'Fichier non valide ou vide.');
     }
 }
 
@@ -9132,10 +9133,10 @@ function endDownload() {
                 title: 'Received file',
                 text: incomingFileInfo.file.fileName + ' size ' + bytesToSize(incomingFileInfo.file.fileSize),
                 imageUrl: e.target.result,
-                imageAlt: 'mirotalk-file-img-download',
+                imageAlt: 'HDM telechargement image',
                 showDenyButton: true,
-                confirmButtonText: `Save`,
-                denyButtonText: `Cancel`,
+                confirmButtonText: `Sauvegarder`,
+                denyButtonText: `Annuler`,
                 showClass: { popup: 'animate__animated animate__fadeInDown' },
                 hideClass: { popup: 'animate__animated animate__fadeOutUp' },
             }).then((result) => {
@@ -9149,14 +9150,14 @@ function endDownload() {
         Swal.fire({
             allowOutsideClick: false,
             background: swBg,
-            imageAlt: 'mirotalk-file-download',
+            imageAlt: 'HDM telechargement image',
             imageUrl: images.share,
             position: 'center',
-            title: 'Received file',
+            title: 'Fichier reçu',
             text: incomingFileInfo.file.fileName + ' size ' + bytesToSize(incomingFileInfo.file.fileSize),
             showDenyButton: true,
-            confirmButtonText: `Save`,
-            denyButtonText: `Cancel`,
+            confirmButtonText: `Sauvegarder`,
+            denyButtonText: `Annuler`,
             showClass: { popup: 'animate__animated animate__fadeInDown' },
             hideClass: { popup: 'animate__animated animate__fadeOutUp' },
         }).then((result) => {
@@ -9196,18 +9197,18 @@ function sendVideoUrl(peer_id = null) {
         background: swBg,
         position: 'center',
         imageUrl: images.vaShare,
-        title: 'Share a Video or Audio',
-        text: 'Paste a Video or audio URL',
+        title: 'Partager video ou audio',
+        text: 'Collez une URL de vidéo ou audio',
         input: 'text',
         showCancelButton: true,
-        confirmButtonText: `Share`,
+        confirmButtonText: `Partager`,
         showClass: { popup: 'animate__animated animate__fadeInDown' },
         hideClass: { popup: 'animate__animated animate__fadeOutUp' },
     }).then((result) => {
         if (result.value) {
             result.value = filterXSS(result.value);
             if (!thereArePeerConnections()) {
-                return userLog('info', 'No participants detected');
+                return userLog('info', 'Pas de participant(s) détécté(s)');
             }
             console.log('Video URL: ' + result.value);
             /*
@@ -9216,7 +9217,7 @@ function sendVideoUrl(peer_id = null) {
                 https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3
             */
             if (!isVideoTypeSupported(result.value)) {
-                return userLog('warning', 'Something wrong, try with another Video or audio URL');
+                return userLog('warning', 'Essayez une autre url..');
             }
             const is_youtube = getVideoType(result.value) == 'na' ? true : false;
             const video_url = is_youtube ? getYoutubeEmbed(result.value) : result.value;
@@ -9348,11 +9349,11 @@ function handleVideoPlayer(config) {
     //
     switch (video_action) {
         case 'open':
-            userLog('toast', `${icons.user} ${peer_name} \n open video player`);
+            userLog('toast', `${icons.user} ${peer_name} \n Ouvrir le lecteur vidéo`);
             openVideoUrlPlayer(config);
             break;
         case 'close':
-            userLog('toast', `${icons.user} ${peer_name} \n close video player`);
+            userLog('toast', `${icons.user} ${peer_name} \n Fermer le lecteur vidéo`);
             closeVideoUrlPlayer();
             break;
     }
@@ -9368,7 +9369,7 @@ function handlePeerKickOutBtn(peer_id) {
     peerKickOutBtn.addEventListener('click', (e) => {
         isPresenter
             ? kickOut(peer_id)
-            : msgPopup('warning', 'Only the presenter can eject participants', 'top-end', 4000);
+            : msgPopup('warning', 'Seul le présentateur peut éjecter le(s) participant(s)', 'top-end', 4000);
     });
 }
 
@@ -9383,11 +9384,11 @@ function kickOut(peer_id) {
         background: swBg,
         position: 'center',
         imageUrl: images.confirmation,
-        title: 'Kick out ' + pName,
-        text: 'Are you sure you want to kick out this participant?',
+        title: 'Ca dégage' + pName,
+        text: 'êtes vous sûr de dégager cet utilisateur ?',
         showDenyButton: true,
-        confirmButtonText: `Yes`,
-        denyButtonText: `No`,
+        confirmButtonText: `Oui`,
+        denyButtonText: `Non`,
         showClass: { popup: 'animate__animated animate__fadeInDown' },
         hideClass: { popup: 'animate__animated animate__fadeOutUp' },
     }).then((result) => {
@@ -9421,12 +9422,12 @@ function handleKickedOut(config) {
         background: swBg,
         position: 'center',
         imageUrl: images.leave,
-        title: 'Kicked out!',
+        title: 'Ca dégage ',
         html:
             `<h2 style="color: #FF2D00;">` +
-            `User ` +
+            `l\'utilisateur ` +
             peer_name +
-            `</h2> will kick out you after <b style="color: #FF2D00;"></b> milliseconds.`,
+            `</h2> Va vous dégager comme un(e) mal propre après <b style="color: #FF2D00;"></b> millisecondes.`,
         timer: 5000,
         timerProgressBar: true,
         didOpen: () => {
@@ -9450,49 +9451,6 @@ function handleKickedOut(config) {
     });
 }
 
-/**
- * MiroTalk about info
- */
-function showAbout() {
-    playSound('newMessage');
-
-    Swal.fire({
-        background: swBg,
-        position: 'center',
-        title: '<strong>WebRTC P2P</strong>',
-        imageAlt: 'mirotalk-about',
-        imageUrl: images.about,
-        customClass: { image: 'img-about' },
-        html: `
-        <br/>
-        <div id="about">
-            <button 
-                id="support-button" 
-                data-umami-event="Support button" 
-                class="pulsate" 
-                onclick="window.open('https://codecanyon.net/user/miroslavpejic85')">
-                <i class="${className.heart}" ></i>&nbsp;Support
-            </button>
-            <br /><br />
-            Author:<a 
-                id="linkedin-button" 
-                data-umami-event="Linkedin button" 
-                href="https://www.linkedin.com/in/miroslav-pejic-976a07101/" target="_blank"> 
-                Miroslav Pejic
-            </a>
-            <br /><br />
-            Email:<a 
-                id="email-button" 
-                data-umami-event="Email button" 
-                href="mailto:miroslav.pejic.85@gmail.com?subject=MiroTalk P2P info"> 
-                miroslav.pejic.85@gmail.com
-            </a>
-        </div>
-        `,
-        showClass: { popup: 'animate__animated animate__fadeInDown' },
-        hideClass: { popup: 'animate__animated animate__fadeOutUp' },
-    });
-}
 
 /**
  * Leave the Room and create a new one
@@ -9501,7 +9459,7 @@ function leaveRoom() {
     checkRecording();
 
     redirectOnLeave();
-    
+
 }
 
 /**
