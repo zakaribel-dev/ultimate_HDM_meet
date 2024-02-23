@@ -16,7 +16,7 @@
         />
         <meta
             name="description"
-            content="MiroTalk powered by WebRTC, Real-time Simple Secure Fast video calls, chat and screen sharing capabilities in the browser, from your mobile or desktop."
+            content="HDM Meet."
         />
         <meta
             name="keywords"
@@ -192,7 +192,7 @@
                         cols="1"
                         id="msgerInput"
                         class="msger-input"
-                        placeholder="Write a message..."
+                        placeholder="écrivez votre message..."
                     ></textarea>
                 </div>
 
@@ -324,13 +324,13 @@
                             </tr>
                         </table>
                         <div id="tabRoomSecurity">
-                            <button id="lockRoomBtn"><i class="fas fa-lock-open"></i>&nbsp;Lock room</button>
-                            <button id="unlockRoomBtn"><i class="fas fa-lock"></i>&nbsp;Unlock room</button>
+                            <button id="lockRoomBtn"><i class="fas fa-lock-open"></i>&nbsp;Verrouiller la salle</button>
+                            <button id="unlockRoomBtn"><i class="fas fa-lock"></i>&nbsp;Déverrouiller la salle</button>
                             <br />
                         </div>
                         <div style="margin-bottom: 5px">
                             <button id="roomSendEmailBtn">
-                                <i class="fas fa-envelope-circle-check"></i>&nbsp;Send email invitation
+                                <i class="fas fa-envelope-circle-check"></i>&nbsp;Envoyer une invitation par e-mail
                                 <br />
                             </button>
                         </div>
@@ -340,7 +340,7 @@
                                 <td class="width-130">
                                     <div class="title">
                                         <i class="fas fa-microphone-lines"></i>
-                                        <p>Volume bar</p>
+                                        <p>Barre de volume</p>
                                     </div>
                                 </td>
                                 <td><input id="switchAudioPitchBar" class="toggle" type="checkbox" checked /></td>
@@ -349,7 +349,7 @@
                                 <td class="width-130">
                                     <div class="title">
                                         <i class="fas fa-music"></i>
-                                        <p>Sounds</p>
+                                        <p>Sons</p>
                                     </div>
                                 </td>
                                 <td><input id="switchSounds" class="toggle" type="checkbox" checked /></td>
@@ -358,20 +358,20 @@
                                 <td class="width-130">
                                     <div class="title">
                                         <i class="fas fa-share-alt"></i>
-                                        <p>Share</p>
+                                        <p>Partager</p>
                                     </div>
                                 </td>
                                 <td><input id="switchShare" class="toggle" type="checkbox" checked /></td>
                             </tr>
                         </table>
-                    </div>
-
-                    <div id="tabVideo" class="tabcontent">
+                        </div>
+                        
+                        <div id="tabVideo" class="tabcontent">
                         <br />
                         <div>
                             <div class="title">
                                 <i class="fas fa-video"></i>
-                                <p>Video Source</p>
+                                <p>Source vidéo</p>
                             </div>
                             <br />
                             <select id="videoSource"></select>
@@ -379,11 +379,11 @@
                         <br />
                         <div class="title">
                             <i class="fas fa-palette"></i>
-                            <p>Video Quality</p>
+                            <p>Qualité vidéo</p>
                         </div>
                         <br />
                         <select id="videoQuality">
-                            <option value="default">Default</option>
+                            <option value="default">Par défaut</option>
                             <option value="qvgaVideo">QVGA</option>
                             <option value="vgaVideo">VGA</option>
                             <option value="hdVideo">HD</option>
@@ -394,47 +394,47 @@
                         <br />
                         <div class="title">
                             <i class="fa-solid fa-film"></i>
-                            <p>Video fit</p>
+                            <p>Ajustement de la vidéo</p>
                         </div>
                         <br />
                         <select id="videoObjFitSelect">
-                            <option value="fill">Fill</option>
-                            <option value="contain">Contain</option>
-                            <option value="cover">Cover</option>
-                            <option value="scale-down">Scale-down</option>
-                            <option value="none">None</option>
+                            <option value="fill">Remplir</option>
+                            <option value="contain">Contenir</option>
+                            <option value="cover">Couvrir</option>
+                            <option value="scale-down">Réduire</option>
+                            <option value="none">Aucun</option>
                         </select>
                         <div id="videoFpsDiv">
-                            <br />
-                            <div class="title">
-                                <i class="fa-solid fa-camera"></i>
-                                <p>Camera FPS</p>
-                            </div>
-                            <br />
-                            <select id="videoFps">
-                                <option value="60">60 - frame-per-second</option>
-                                <option value="30">30 - frame-per-second</option>
-                                <option value="15">15 - frame-per-second</option>
-                                <option value="5">5 - frame-per-second</option>
-                            </select>
+                        <br />
+                        <div class="title">
+                            <i class="fa-solid fa-camera"></i>
+                            <p>Images par seconde de la caméra</p>
+                        </div>
+                        <br />
+                        <select id="videoFps">
+                            <option value="60">60 - images par seconde</option>
+                            <option value="30">30 - images par seconde</option>
+                            <option value="15">15 - images par seconde</option>
+                            <option value="5">5 - images par seconde</option>
+                        </select>
                         </div>
                         <div id="screenFpsDiv">
-                            <br />
-                            <div class="title">
-                                <i class="fa-solid fa-desktop"></i>
-                                <p>Screen FPS</p>
-                            </div>
-                            <br />
-                            <select id="screenFps">
-                                <option value="60">60 - frame-per-second</option>
-                                <option value="30">30 - frame-per-second</option>
-                                <option value="15">15 - frame-per-second</option>
-                                <option value="5">5 - frame-per-second</option>
-                            </select>
+                        <br />
+                        <div class="title">
+                            <i class="fa-solid fa-desktop"></i>
+                            <p>Images par seconde de l'écran</p>
                         </div>
-                    </div>
-
-                    <div id="tabAudio" class="tabcontent">
+                        <br />
+                        <select id="screenFps">
+                            <option value="60">60 - images par seconde</option>
+                            <option value="30">30 - images par seconde</option>
+                            <option value="15">15 - images par seconde</option>
+                            <option value="5">5 - images par seconde</option>
+                        </select>
+                        </div>
+                        </div>
+                        
+                        <div id="tabAudio" class="tabcontent">
                         <br />
                         <div>
                             <div class="title">
@@ -461,7 +461,7 @@
                         <div class="dropdown" id="dropDownMicOptions">
                             <button class="buttons" id="micOptionsBtn" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-screwdriver-wrench"></i>
-                                <p>Advance options</p>
+                                <p>Options avancées</p>
                                 <i class="fas fa-caret-down"></i>
                             </button>
                             <br /><br /><br /><br />
@@ -470,8 +470,7 @@
                                     <tr id="autoGainControlButton">
                                         <td class="microphone-table-width">
                                             <div class="title">
-                                                <!-- <i class="fas fa-ear-listen"></i> -->
-                                                <p>Auto gain control</p>
+                                                <p>Contrôle automatique du gain</p>
                                             </div>
                                         </td>
                                         <td><input class="toggle" id="switchAutoGainControl" type="checkbox" /></td>
@@ -479,8 +478,7 @@
                                     <tr id="echoCancellationButton">
                                         <td class="microphone-table-width">
                                             <div class="title">
-                                                <!-- <i class="fas fa-ear-listen"></i> -->
-                                                <p>Echo cancellation</p>
+                                                <p>Annulation de l'écho</p>
                                             </div>
                                         </td>
                                         <td>
@@ -490,8 +488,7 @@
                                     <tr id="noiseSuppressionButton">
                                         <td class="microphone-table-width">
                                             <div class="title">
-                                                <!-- <i class="fas fa-ear-listen"></i> -->
-                                                <p>Noise suppression</p>
+                                                <p>Suppression du bruit</p>
                                             </div>
                                         </td>
                                         <td>
@@ -501,8 +498,7 @@
                                     <tr id="micLatencyButton">
                                         <td class="microphone-table-width">
                                             <div class="title">
-                                                <!-- <i class="fab fa-audible"></i> -->
-                                                <p>Latency</p>
+                                                <p>Latence</p>
                                             </div>
                                         </td>
                                         <td>
@@ -524,7 +520,6 @@
                                     <tr id="micVolumeButton">
                                         <td class="microphone-table-width">
                                             <div class="title">
-                                                <!-- <i class="fas fa-volume-high"></i> -->
                                                 <p>Volume</p>
                                             </div>
                                         </td>
@@ -547,8 +542,7 @@
                                     <tr id="sampleRateButton">
                                         <td class="microphone-table-width">
                                             <div class="title">
-                                                <!-- <i class="fas fa-microphone-lines"></i> -->
-                                                <p>Sample rate</p>
+                                                <p>Taux d'échantillonnage</p>
                                             </div>
                                         </td>
                                         <td>
@@ -561,8 +555,7 @@
                                     <tr id="sampleSizeButton">
                                         <td class="microphone-table-width">
                                             <div class="title">
-                                                <!-- <i class="fas fa-microphone-lines"></i> -->
-                                                <p>Sample size</p>
+                                                <p>Taille de l'échantillon</p>
                                             </div>
                                         </td>
                                         <td>
@@ -575,20 +568,19 @@
                                     <tr id="channelCountButton">
                                         <td class="microphone-table-width">
                                             <div class="title">
-                                                <!-- <i class="fas fa-microphone-lines"></i> -->
-                                                <p>Channel count</p>
+                                                <p>Nombre de canaux</p>
                                             </div>
                                         </td>
                                         <td>
                                             <select id="channelCountSelect">
                                                 <option value="1">1 (mono)</option>
-                                                <option value="2">2 (stereo)</option>
+                                                <option value="2">2 (stéréo)</option>
                                             </select>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <button class="buttons" id="applyAudioOptionsBtn">Apply options</button>
+                                            <button class="buttons" id="applyAudioOptionsBtn">Appliquer les options</button>
                                         </td>
                                     </tr>
                                 </table>
@@ -597,13 +589,13 @@
                         <div id="audioOutputDiv">
                             <div class="title">
                                 <i class="fas fa-headphones"></i>
-                                <p>Speaker</p>
+                                <p>Haut-parleur</p>
                             </div>
                             <br />
                             <select id="audioOutput"></select>
                             <button id="speakerTestBtn" class="buttons">
                                 <i class="fa-solid fa-circle-play"></i>
-                                <p>Test speaker</p>
+                                <p>Tester le haut-parleur</p>
                             </button>
                             <br /><br /><br /><br /><br />
                         </div>
@@ -612,15 +604,15 @@
                                 <td class="width-130">
                                     <div class="title">
                                         <i class="fa-solid fa-hand-pointer"></i>
-                                        <p>Push to talk</p>
+                                        <p>Appuyez pour parler</p>
                                     </div>
                                 </td>
                                 <td><input id="switchPushToTalk" class="toggle" type="checkbox" /></td>
                             </tr>
                         </table>
-                    </div>
-
-                    <div id="tabRecording" class="tabcontent">
+                        </div>
+                        
+                        <div id="tabRecording" class="tabcontent">
                         <img id="recImage" src="../images/recording.png" />
                         <div id="recOptions">
                             <table class="settingsTable">
@@ -628,7 +620,7 @@
                                     <td class="width-160">
                                         <div class="title">
                                             <i class="fa-solid fa-film"></i>
-                                            <p>Prioritize H.264</p>
+                                            <p>Prioriser H.264</p>
                                         </div>
                                     </td>
                                     <td><input class="toggle" id="switchH264Recording" type="checkbox" /></td>
@@ -641,25 +633,25 @@
                             <br />
                             <button id="pauseRecBtn" class="buttons" style="display: none">
                                 <i class="far fa-pause-circle"></i>
-                                <p>Pause recording</p>
+                                <p>Pause de l'enregistrement</p>
                             </button>
                             <button id="resumeRecBtn" class="buttons" style="display: none">
                                 <i class="far fa-play-circle"></i>
-                                <p>Resume recording</p>
+                                <p>Reprendre l'enregistrement</p>
                             </button>
                         </div>
                         <div class="clw" id="lastRecordingInfo"></div>
-                    </div>
-
-                    <div id="tabMedia" class="tabcontent">
+                        </div>
+                        
+                        <div id="tabMedia" class="tabcontent">
                         <br />
                         <button id="shareMediaAudioVideoBtn" class="buttons">
                             <i class="fa-solid fa-circle-play"></i>
-                            <p>Share a Video or Audio</p>
+                            <p>Partager une vidéo ou un audio</p>
                         </button>
-                    </div>
-
-                    <div id="tabParticipants" class="tabcontent">
+                        </div>
+                        
+                        <div id="tabParticipants" class="tabcontent">
                         <br />
                         <div class="title">
                             <i class="fa-solid fa-users"></i>
@@ -668,15 +660,15 @@
                         <br />
                         <div id="tabRoomParticipants">
                             <br />
-                            <button id="muteEveryoneBtn"><i class="fas fa-microphone"></i>&nbsp;Mute everyone</button>
-                            <button id="hideEveryoneBtn"><i class="fas fa-video"></i>&nbsp;Hide everyone</button>
+                            <button id="muteEveryoneBtn"><i class="fas fa-microphone"></i>&nbsp;Muter tout le monde</button>
+                            <button id="hideEveryoneBtn"><i class="fas fa-video"></i>&nbsp;Masquer tout le monde</button>
                             <button id="ejectEveryoneBtn">
-                                <i class="fas fa-right-from-bracket"></i>&nbsp;Eject everyone
+                                <i class="fas fa-right-from-bracket"></i>&nbsp;Éjecter tout le monde
                             </button>
                         </div>
-                    </div>
-
-                    <div id="tabProfile" class="tabcontent">
+                        </div>
+                        
+                        <div id="tabProfile" class="tabcontent">
                         <div id="tabRoomPeerName">
                             <div>
                                 <img id="myProfileAvatar" />
@@ -684,40 +676,40 @@
                             <br />
                             <div class="title">
                                 <i class="fas fa-user"></i>
-                                <p>Name</p>
+                                <p>Nom</p>
                             </div>
                             <br /><br />
                             <div>
-                                <input id="myPeerNameSet" type="text" placeholder="Change name..." maxlength="32" />
-                                <button id="myPeerNameSetBtn"><i class="fas fa-user-edit"></i>&nbsp;Change name</button>
+                                <input id="myPeerNameSet" type="text" placeholder="Changer de nom..." maxlength="32" />
+                                <button id="myPeerNameSetBtn"><i class="fas fa-user-edit"></i>&nbsp;Changer le nom</button>
                             </div>
                         </div>
                         <br />
                         <div class="title">
                             <i class="fa-solid fa-user-shield"></i>
-                            <p>Presenter:</p>
+                            <p>Présentateur :</p>
                             <p id="isPeerPresenter">true</p>
                         </div>
-                    </div>
-
-                    <div id="tabStyling" class="tabcontent">
+                        </div>
+                        
+                        <div id="tabStyling" class="tabcontent">
                         <br />
                         <div class="title">
                             <i class="fa-solid fa-palette"></i>
-                            <p>Theme</p>
+                            <p>Thème</p>
                         </div>
                         <br />
                         <select id="mirotalkTheme">
-                            <option value="dark">⚫️ Dark</option>
-                            <option value="grey">⚪️ Grey</option>
-                            <option value="green">🟢 Green</option>
-                            <option value="blue">🔵 Blue</option>
-                            <option value="red">🔴 Red</option>
+                            <option value="dark">⚫️ Sombre</option>
+                            <option value="grey">⚪️ Gris</option>
+                            <option value="green">🟢 Vert</option>
+                            <option value="blue">🔵 Bleu</option>
+                            <option value="red">🔴 Rouge</option>
                         </select>
                         <br />
                         <div class="title">
                             <i class="fas fa-fill-drip"></i>
-                            <p>Custom theme</p>
+                            <p>Thème personnalisé</p>
                         </div>
                         <br />
                         <input id="themeColorPicker" class="theme-color-picker" type="text" />
@@ -726,7 +718,7 @@
                             <div class="width-130">
                                 <div class="title">
                                     <i class="fas fa-save"></i>
-                                    <p>Keep custom</p>
+                                    <p>Garder personnalisé</p>
                                 </div>
                             </div>
                             <input id="keepCustomTheme" class="toggle" type="checkbox" />
@@ -734,7 +726,7 @@
                         <br />
                         <div class="title">
                             <i class="fa-solid fa-up-down-left-right"></i>
-                            <p>Buttons bar</p>
+                            <p>Barre de boutons</p>
                         </div>
                         <br />
                         <select id="mainButtonsBarPosition">
@@ -745,31 +737,32 @@
                         <div id="pinUnpinGridDiv">
                             <div class="title">
                                 <i class="fa-solid fa-map-pin"></i>
-                                <p>Pin video position</p>
+                                <p>Position vidéo épinglée</p>
                             </div>
                             <br />
                             <select id="pinVideoPositionSelect">
                                 <option value="vertical">Vertical</option>
                                 <option value="horizontal">Horizontal</option>
-                                <option value="top">Top</option>
+                                <option value="top">Haut</option>
                             </select>
                         </div>
-                    </div>
-
-                    <div id="tabLanguages" class="tabcontent">
+                        </div>
+                        
+                        <div id="tabLanguages" class="tabcontent">
                         <br />
                         <div class="title">
                             <i class="fa-solid fa-language"></i>
-                            <p>Language</p>
+                            <p>Langue</p>
                         </div>
                         <br />
                         <div id="google_translate_element"></div>
                         <br />
-                    </div>
-                    <br />
-                </div>
-            </main>
-        </section>
+                        </div>
+                        <br />
+                        </div>
+                        </main>
+                        </section>
+                        
 
         <!-- End my settings -->
 

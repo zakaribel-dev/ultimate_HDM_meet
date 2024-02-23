@@ -732,84 +732,85 @@ function setButtonsToolTip() {
     // Not need for mobile
     if (isMobileDevice) return;
     // Init buttons
-    setTippy(initScreenShareBtn, 'Toggle screen sharing', 'top');
-    setTippy(initVideoMirrorBtn, 'Toggle video mirror', 'top');
-    // Main buttons
+    setTippy(initScreenShareBtn, 'Basculer le partage d\'écran', 'haut');
+    setTippy(initVideoMirrorBtn, 'Basculer le mirroring vidéo', 'haut');
+    // Boutons principaux
     refreshMainButtonsToolTipPlacement();
-    // Chat room buttons
-    setTippy(msgerClose, 'Close', 'bottom');
-    setTippy(msgerShowChatOnMsgDiv, 'Show chat when you receive a new message', 'bottom');
-    setTippy(msgerSpeechMsgDiv, 'Speech the incoming messages', 'bottom');
-    setTippy(msgerTheme, 'Ghost theme', 'bottom');
-    setTippy(msgerClean, 'Clean the messages', 'bottom');
-    setTippy(msgerSaveBtn, 'Save the messages', 'bottom');
-    setTippy(msgerMaxBtn, 'Maximize', 'bottom');
-    setTippy(msgerMinBtn, 'Minimize', 'bottom');
-    setTippy(msgerEmojiBtn, 'Emoji', 'top');
-    setTippy(msgerMarkdownBtn, 'Markdown', 'top');
-    setTippy(msgerGPTBtn, 'ChatGPT', 'top');
-    setTippy(msgerShareFileBtn, 'Share file', 'top');
-    setTippy(msgerCPBtn, 'Private messages', 'top');
-    setTippy(msgerCleanTextBtn, 'Clean', 'top');
-    setTippy(msgerPasteBtn, 'Paste', 'top');
-    setTippy(msgerSendBtn, 'Send', 'top');
-    // Chat participants buttons
-    setTippy(msgerCPCloseBtn, 'Close', 'bottom');
-    // Caption buttons
-    setTippy(captionClose, 'Close', 'bottom');
-    setTippy(captionMaxBtn, 'Maximize', 'bottom');
-    setTippy(captionMinBtn, 'Minimize', 'bottom');
-    setTippy(captionTheme, 'Ghost theme', 'bottom');
-    setTippy(captionClean, 'Clean the messages', 'bottom');
-    setTippy(captionSaveBtn, 'Save the messages', 'bottom');
-    setTippy(speechRecognitionIcon, 'Status', 'bottom');
-    setTippy(speechRecognitionStart, 'Start', 'top');
-    setTippy(speechRecognitionStop, 'Stop', 'top');
-    // Settings
-    setTippy(mySettingsCloseBtn, 'Close', 'bottom');
-    setTippy(myPeerNameSetBtn, 'Change name', 'top');
-    setTippy(myRoomId, 'Room name (click to copy/share)', 'right');
+    // Boutons de la salle de discussion
+    setTippy(msgerClose, 'Fermer', 'bas');
+    setTippy(msgerShowChatOnMsgDiv, 'Afficher le chat lorsque vous recevez un nouveau message', 'bas');
+    setTippy(msgerSpeechMsgDiv, 'Énoncer les messages entrants', 'bas');
+    setTippy(msgerTheme, 'Thème fantôme', 'bas');
+    setTippy(msgerClean, 'Nettoyer les messages', 'bas');
+    setTippy(msgerSaveBtn, 'Enregistrer les messages', 'bas');
+    setTippy(msgerMaxBtn, 'Maximiser', 'bas');
+    setTippy(msgerMinBtn, 'Minimiser', 'bas');
+    setTippy(msgerEmojiBtn, 'Emoji', 'haut');
+    setTippy(msgerMarkdownBtn, 'Markdown', 'haut');
+    setTippy(msgerGPTBtn, 'ChatGPT', 'haut');
+    setTippy(msgerShareFileBtn, 'Partager un fichier', 'haut');
+    setTippy(msgerCPBtn, 'Messages privés', 'haut');
+    setTippy(msgerCleanTextBtn, 'Nettoyer', 'haut');
+    setTippy(msgerPasteBtn, 'Coller', 'haut');
+    setTippy(msgerSendBtn, 'Envoyer', 'haut');
+    // Boutons des participants à la discussion
+    setTippy(msgerCPCloseBtn, 'Fermer', 'bas');
+    // Boutons de légende
+    setTippy(captionClose, 'Fermer', 'bas');
+    setTippy(captionMaxBtn, 'Maximiser', 'bas');
+    setTippy(captionMinBtn, 'Minimiser', 'bas');
+    setTippy(captionTheme, 'Thème fantôme', 'bas');
+    setTippy(captionClean, 'Nettoyer les messages', 'bas');
+    setTippy(captionSaveBtn, 'Enregistrer les messages', 'bas');
+    setTippy(speechRecognitionIcon, 'Statut', 'bas');
+    setTippy(speechRecognitionStart, 'Démarrer', 'haut');
+    setTippy(speechRecognitionStop, 'Arrêter', 'haut');
+    // Paramètres
+    setTippy(mySettingsCloseBtn, 'Fermer', 'bas');
+    setTippy(myPeerNameSetBtn, 'Changer de nom', 'haut');
+    setTippy(myRoomId, 'Nom de la salle (cliquer pour copier/partager)', 'droite');
     setTippy(
         switchPushToTalk,
-        'If Active, When SpaceBar keydown the microphone will be activated, on keyup will be deactivated, like a walkie-talkie',
-        'right',
+        "Si activé, lorsque la touche Espace est enfoncée, le microphone sera activé, lorsqu'elle est relâchée, il sera désactivé, comme un talkie-walkie",
+        'droite',
     );
-    setTippy(switchSounds, 'Toggle room notify sounds', 'right');
-    setTippy(switchShare, "Show 'Share Room' popup on join.", 'right');
-    setTippy(recImage, 'Toggle recording', 'right');
+    setTippy(switchSounds, 'Activer/désactiver les sons de notification de la salle', 'droite');
+    setTippy(switchShare, "Afficher la fenêtre 'Partager la salle' lors de la connexion.", 'droite');
+    setTippy(recImage, 'Basculer l\'enregistrement', 'droite');
     setTippy(
         switchH264Recording,
-        'Prioritize h.264 with AAC or h.264 with Opus codecs over VP8 with Opus or VP9 with Opus codecs',
-        'right',
+        'Donner la priorité à h.264 avec les codecs AAC ou h.264 avec les codecs Opus sur VP8 avec les codecs Opus ou VP9 avec les codecs Opus',
+        'droite',
     );
-    // Whiteboard buttons
-    setTippy(wbDrawingColorEl, 'Drawing color', 'bottom');
-    setTippy(whiteboardGhostButton, 'Toggle transparent background', 'bottom');
-    setTippy(wbBackgroundColorEl, 'Background color', 'bottom');
-    setTippy(whiteboardPencilBtn, 'Drawing mode', 'bottom');
-    setTippy(whiteboardObjectBtn, 'Object mode', 'bottom');
-    setTippy(whiteboardUndoBtn, 'Undo', 'bottom');
-    setTippy(whiteboardRedoBtn, 'Redo', 'bottom');
-    setTippy(whiteboardImgFileBtn, 'Add image from file', 'bottom');
-    setTippy(whiteboardPdfFileBtn, 'Add pdf from file', 'bottom');
-    setTippy(whiteboardImgUrlBtn, 'Add image from URL', 'bottom');
-    setTippy(whiteboardTextBtn, 'Add the text', 'bottom');
-    setTippy(whiteboardLineBtn, 'Add the line', 'bottom');
-    setTippy(whiteboardRectBtn, 'Add the rectangle', 'bottom');
-    setTippy(whiteboardTriangleBtn, 'Add triangle', 'bottom');
-    setTippy(whiteboardCircleBtn, 'Add the circle', 'bottom');
-    setTippy(whiteboardSaveBtn, 'Save the board', 'bottom');
-    setTippy(whiteboardEraserBtn, 'Erase the object', 'bottom');
-    setTippy(whiteboardCleanBtn, 'Clean the board', 'bottom');
-    setTippy(whiteboardLockBtn, 'If enabled, participants cannot interact', 'right');
-    setTippy(whiteboardCloseBtn, 'Close', 'right');
-    // Suspend/Hide File transfer buttons
-    setTippy(sendAbortBtn, 'Abort file transfer', 'right-start');
-    setTippy(receiveHideBtn, 'Hide file transfer', 'right-start');
-    // Video/audio URL player
-    setTippy(videoUrlCloseBtn, 'Close the video player', 'bottom');
-    setTippy(videoAudioCloseBtn, 'Close the video player', 'bottom');
-    setTippy(msgerVideoUrlBtn, 'Share a video or audio to all participants', 'top');
+    // Boutons du tableau blanc
+    setTippy(wbDrawingColorEl, 'Couleur de dessin', 'bas');
+    setTippy(whiteboardGhostButton, 'Basculer le fond transparent', 'bas');
+    setTippy(wbBackgroundColorEl, 'Couleur de fond', 'bas');
+    setTippy(whiteboardPencilBtn, 'Mode dessin', 'bas');
+    setTippy(whiteboardObjectBtn, 'Mode objet', 'bas');
+    setTippy(whiteboardUndoBtn, 'Annuler', 'bas');
+    setTippy(whiteboardRedoBtn, 'Refaire', 'bas');
+    setTippy(whiteboardImgFileBtn, 'Ajouter une image depuis un fichier', 'bas');
+    setTippy(whiteboardPdfFileBtn, 'Ajouter un PDF depuis un fichier', 'bas');
+    setTippy(whiteboardImgUrlBtn, 'Ajouter une image depuis une URL', 'bas');
+    setTippy(whiteboardTextBtn, 'Ajouter le texte', 'bas');
+    setTippy(whiteboardLineBtn, 'Ajouter la ligne', 'bas');
+    setTippy(whiteboardRectBtn, 'Ajouter le rectangle', 'bas');
+    setTippy(whiteboardTriangleBtn, 'Ajouter un triangle', 'bas');
+    setTippy(whiteboardCircleBtn, 'Ajouter le cercle', 'bas');
+    setTippy(whiteboardSaveBtn, 'Enregistrer le tableau', 'bas');
+    setTippy(whiteboardEraserBtn, 'Effacer l\'objet', 'bas');
+    setTippy(whiteboardCleanBtn, 'Nettoyer le tableau', 'bas');
+    setTippy(whiteboardLockBtn, 'Si activé, les participants ne peuvent pas interagir', 'droite');
+    setTippy(whiteboardCloseBtn, 'Fermer', 'droite');
+    // Boutons de suspension/masquage de transfert de fichiers
+    setTippy(sendAbortBtn, 'Annuler le transfert de fichier', 'droite-début');
+    setTippy(receiveHideBtn, 'Masquer le transfert de fichier', 'droite-début');
+    // Lecteur de URL vidéo/audio
+    setTippy(videoUrlCloseBtn, 'Fermer le lecteur vidéo', 'bas');
+    setTippy(videoAudioCloseBtn, 'Fermer le lecteur vidéo', 'bas');
+    setTippy(msgerVideoUrlBtn, 'Partager une vidéo ou un audio avec tous les participants', 'haut');
+    
 }
 
 /**
@@ -821,22 +822,22 @@ function refreshMainButtonsToolTipPlacement() {
     if (isMobileDevice) return;
     // main buttons
     placement = btnsBarSelect.options[btnsBarSelect.selectedIndex].value == 'vertical' ? 'right' : 'top';
-    setTippy(shareRoomBtn, 'Invite others to join', placement);
-    setTippy(hideMeBtn, 'Toggle hide myself from the room view', placement);
-    setTippy(audioBtn, useAudio ? 'Stop the audio' : 'My audio is disabled', placement);
-    setTippy(videoBtn, useVideo ? 'Stop the video' : 'My video is disabled', placement);
-    setTippy(screenShareBtn, 'Start screen sharing', placement);
-    setTippy(recordStreamBtn, 'Start recording', placement);
-    setTippy(fullScreenBtn, 'View full screen', placement);
-    setTippy(chatRoomBtn, 'Open the chat', placement);
-    setTippy(captionBtn, 'Open the caption', placement);
-    setTippy(roomEmojiPickerBtn, 'Send reaction', placement);
-    setTippy(myHandBtn, 'Raise your hand', placement);
-    setTippy(whiteboardBtn, 'Open the whiteboard', placement);
-    setTippy(fileShareBtn, 'Share file', placement);
-    setTippy(documentPiPBtn, 'Toggle picture in picture', placement);
-    setTippy(mySettingsBtn, 'Open the settings', placement);
-    setTippy(leaveRoomBtn, 'Leave this room', placement);
+    setTippy(shareRoomBtn, 'Inviter d\'autres personnes à rejoindre', placement);
+    setTippy(hideMeBtn, 'Basculer pour me cacher de la vue de la salle', placement);
+    setTippy(audioBtn, useAudio ? 'Arrêter l\'audio' : 'Mon audio est désactivé', placement);
+    setTippy(videoBtn, useVideo ? 'Arrêter la vidéo' : 'Ma vidéo est désactivée', placement);
+    setTippy(screenShareBtn, 'Commencer le partage d\'écran', placement);
+    setTippy(recordStreamBtn, 'Commencer l\'enregistrement', placement);
+    setTippy(fullScreenBtn, 'Afficher en plein écran', placement);
+    setTippy(chatRoomBtn, 'Ouvrir le chat', placement);
+    setTippy(captionBtn, 'Ouvrir la légende', placement);
+    setTippy(roomEmojiPickerBtn, 'Envoyer une réaction', placement);
+    setTippy(myHandBtn, 'Lever la main', placement);
+    setTippy(whiteboardBtn, 'Ouvrir le tableau blanc', placement);
+    setTippy(fileShareBtn, 'Partager un fichier', placement);
+    setTippy(documentPiPBtn, 'Basculer en mode image dans l\'image', placement);
+    setTippy(mySettingsBtn, 'Ouvrir les paramètres', placement);
+    setTippy(leaveRoomBtn, 'Quitter cette salle', placement);
 }
 
 /**
@@ -2661,19 +2662,20 @@ async function loadLocalMedia(stream, kind) {
 
             // no mobile devices
             if (!isMobileDevice) {
-                setTippy(mySessionTime, 'Session Time', 'bottom');
-                setTippy(myPeerName, 'My name', 'bottom');
-                setTippy(myHandStatusIcon, 'My hand is raised', 'bottom');
-                setTippy(myPrivacyBtn, 'Toggle video privacy', 'bottom');
-                setTippy(myVideoStatusIcon, 'My video is on', 'bottom');
-                setTippy(myAudioStatusIcon, 'My audio is on', 'bottom');
-                setTippy(myVideoToImgBtn, 'Take a snapshot', 'bottom');
-                setTippy(myVideoFullScreenBtn, 'Full screen mode', 'bottom');
-                setTippy(myVideoPiPBtn, 'Toggle picture in picture', 'bottom');
-                setTippy(myVideoZoomInBtn, 'Zoom in video', 'bottom');
-                setTippy(myVideoZoomOutBtn, 'Zoom out video', 'bottom');
-                setTippy(myVideoPinBtn, 'Toggle Pin video', 'bottom');
-                setTippy(myVideoMirrorBtn, 'Toggle video mirror', 'bottom');
+                setTippy(mySessionTime, 'Temps de session', 'bottom');
+                setTippy(myPeerName, 'Mon nom', 'bottom');
+                setTippy(myHandStatusIcon, 'Je lève la main', 'bottom');
+                setTippy(myPrivacyBtn, 'Activer/désactiver la confidentialité vidéo', 'bottom');
+                setTippy(myVideoStatusIcon, 'Ma vidéo est activée', 'bottom');
+                setTippy(myAudioStatusIcon, 'Mon audio est activé', 'bottom');
+                setTippy(myVideoToImgBtn, 'Prendre une capture d\'écran', 'bottom');
+                setTippy(myVideoFullScreenBtn, 'Mode plein écran', 'bottom');
+                setTippy(myVideoPiPBtn, 'Activer/désactiver l\'image dans l\'image', 'bottom');
+                setTippy(myVideoZoomInBtn, 'Zoom avant sur la vidéo', 'bottom');
+                setTippy(myVideoZoomOutBtn, 'Zoom arrière sur la vidéo', 'bottom');
+                setTippy(myVideoPinBtn, 'Épingler/Désépingler la vidéo', 'bottom');
+                setTippy(myVideoMirrorBtn, 'Activer/désactiver le miroir vidéo', 'bottom');
+                
             }
 
             // my video avatar image
@@ -8162,9 +8164,9 @@ function handleWhiteboardToggle() {
 function toggleWhiteboard() {
     if (!wbIsOpen) {
         playSound('newMessage');
-        setTippy(whiteboardBtn, 'Close the Whiteboard', placement);
+        setTippy(whiteboardBtn, 'Fermer le tableau blanc', placement);
     } else {
-        setTippy(whiteboardBtn, 'Open the Whiteboard', placement);
+        setTippy(whiteboardBtn, 'Ouvrir le tableau blanc', placement);
     }
 
     whiteboard.classList.toggle('show');
