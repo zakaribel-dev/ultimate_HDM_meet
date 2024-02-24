@@ -6494,7 +6494,7 @@ function cleanMessages() {
     Swal.fire({
         background: 'white',
         position: 'center',
-        title: 'Clean up chat messages?',
+        title: 'Effacer messages du chat ??',
         imageUrl: images.delete,
         showDenyButton: true,
         confirmButtonText: `Yes`,
@@ -9384,7 +9384,7 @@ function kickOut(peer_id) {
         background: 'white',
         position: 'center',
         imageUrl: images.confirmation,
-        title: 'Ca dégage' + pName,
+        title: 'Ca dégage ' + pName,
         text: 'êtes vous sûr de dégager cet utilisateur ?',
         showDenyButton: true,
         confirmButtonText: `Oui`,
@@ -9424,7 +9424,7 @@ function handleKickedOut(config) {
         imageUrl: images.leave,
         title: 'Ca dégage ',
         html:
-            `<h2 style="color: #FF2D00;">` +
+            `<h2 style="color: #FF2D00;"> ` +
             `l\'utilisateur ` +
             peer_name +
             `</h2> Va vous dégager comme un(e) mal propre après <b style="color: #FF2D00;"></b> millisecondes.`,
