@@ -511,7 +511,7 @@ app.post(['/login'], (req, res) => {
         });
         return res.status(200).json({ message: token });
     } else {
-        return res.status(401).json({ message: 'Non autorisé' });
+        return res.status(401).json({ message: 'unauthorized' });
     }
 });
 
@@ -529,7 +529,7 @@ app.post([`${apiBasePath}/meeting`], (req, res) => {
             header: req.headers,
             body: req.body,
         });
-        return res.status(403).json({ error: 'Non autorisé!' });
+        return res.status(403).json({ error: 'Unauthorized!' });
     }
     const meetingURL = api.getMeetingURL();
     res.json({ meeting: meetingURL });
@@ -545,11 +545,11 @@ app.post([`${apiBasePath}/join`], (req, res) => {
     const { host, authorization } = req.headers;
     const api = new ServerApi(host, authorization, api_key_secret);
     if (!api.isAuthorized()) {
-        log.debug('MiroTalk get join - Non autorisé', {
+        log.debug('MiroTalk get join - Unauthorized', {
             header: req.headers,
             body: req.body,
         });
-        return res.status(403).json({ error: 'Non autorisé!' });
+        return res.status(403).json({ error: 'Unauthorized!' });
     }
     const joinURL = api.getJoinURL(req.body);
     res.json({ join: joinURL });
