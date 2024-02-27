@@ -1213,9 +1213,9 @@ function handleUnauthorized() {
         allowEscapeKey: false,
         background: 'white',
         imageUrl: images.forbidden,
-        title: 'Oops, Unauthorized',
-        text: 'The host has user authentication enabled',
-        confirmButtonText: `Login`,
+        title: 'Oops, pas autorisé !',
+        text: 'Vous devez vous identifier !',
+        confirmButtonText: `Se connecter`,
         showClass: { popup: 'animate__animated animate__fadeInDown' },
         hideClass: { popup: 'animate__animated animate__fadeOutUp' },
     }).then(() => {
@@ -1448,8 +1448,10 @@ async function whoAreYou() {
         setMyAudioStatus(useAudio);
     }
 
-    setTippy(initAudioBtn, 'Stop the audio', 'top');
-    setTippy(initVideoBtn, 'Stop the video', 'top');
+    setTippy(initAudioBtn, 'Couper votre micro', 'top');
+    setTippy(initVideoBtn, 'Cacher votre vidéo', 'top');
+    setTippy(initScreenShareBtn, 'Lancer un partage d\'écran', 'top');
+    setTippy(initVideoMirrorBtn, 'Inverser votre vidéo', 'top');
 }
 
 /**
@@ -1491,7 +1493,7 @@ function userNameAlreadyInRoom() {
         imageUrl: images.forbidden,
         position: 'center',
         title: 'Nom',
-        html: `Nom déjà dans la conférence. <br/> Please try with another one`,
+        html: `Nom déjà dans la conférence. <br/> Choisissez autre chose SVP`,
         showDenyButton: false,
         confirmButtonText: `OK`,
         showClass: { popup: 'animate__animated animate__fadeInDown' },
@@ -3883,7 +3885,7 @@ function manageLeftButtons() {
     setAudioBtn();
     setVideoBtn();
     setSwapCameraBtn();
-    setScreenShareBtn();
+    // setScreenShareBtn();
     setRecordStreamBtn();
     setFullScreenBtn();
     setChatRoomBtn();
@@ -3974,25 +3976,25 @@ function setSwapCameraBtn() {
 /**
  * Check if i can share the screen, if yes show button else hide it
  */
-function setScreenShareBtn() {
-    if (
-        !isMobileDevice &&
-        (navigator.getDisplayMedia || navigator.mediaDevices.getDisplayMedia) &&
-        buttons.main.showScreenBtn
-    ) {
-        isScreenSharingSupported = true;
-        initScreenShareBtn.addEventListener('click', async (e) => {
-            await toggleScreenSharing(true);
-        });
-        screenShareBtn.addEventListener('click', async (e) => {
-            await toggleScreenSharing();
-        });
-    } else {
-        elemDisplay(initScreenShareBtn, false);
-        elemDisplay(screenShareBtn, false);
-        elemDisplay(screenFpsDiv, false);
-    }
-}
+// function setScreenShareBtn() {
+//     if (
+//         !isMobileDevice &&
+//         (navigator.getDisplayMedia || navigator.mediaDevices.getDisplayMedia) &&
+//         buttons.main.showScreenBtn
+//     ) {
+//         isScreenSharingSupported = true;
+//         initScreenShareBtn.addEventListener('click', async (e) => {
+//             await toggleScreenSharing(true);
+//         });
+//         screenShareBtn.addEventListener('click', async (e) => {
+//             await toggleScreenSharing();
+//         });
+//     } else {
+//         elemDisplay(initScreenShareBtn, false);
+//         elemDisplay(screenShareBtn, false);
+//         elemDisplay(screenFpsDiv, false);
+//     }
+// }
 
 /**
  * Start - Stop Stream recording
@@ -5413,7 +5415,7 @@ function handleAudio(e, init, force = null) {
 
     if (init) {
         initAudioBtn.className = audioClassName;
-        setTippy(initAudioBtn, audioStatus ? 'Stop the audio' : 'Start the audio', 'top');
+        setTippy(initAudioBtn, audioStatus ? 'Arrêter l\'audio' : 'Activer l\'audio', 'top');
         initMicrophoneSelect.disabled = !audioStatus;
         initSpeakerSelect.disabled = !audioStatus;
         lS.setInitConfig(lS.MEDIA_TYPE.audio, audioStatus);
@@ -5456,7 +5458,7 @@ async function handleVideo(e, init, force = null) {
 
     if (init) {
         initVideoBtn.className = videoClassName;
-        setTippy(initVideoBtn, videoStatus ? 'Stop the video' : 'Start the video', 'top');
+        setTippy(initVideoBtn, videoStatus ? 'Arrêter la vidéo' : 'Activer la vidéo', 'top');
         videoStatus ? elemDisplay(initVideo, true, 'block') : elemDisplay(initVideo, false);
         initVideoSelect.disabled = !videoStatus;
         lS.setInitConfig(lS.MEDIA_TYPE.video, videoStatus);

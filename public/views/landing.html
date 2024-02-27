@@ -67,14 +67,6 @@
                     </header>
             
                     <section>
-                        <header >
-                            <nav class="nav-acceuil">
-                                <a class="btn-connexion-admin"  href="#">
-                                    Admin
-                                </a>
-                            </nav>
-                        </header>
-                   
             
                         <div id="lastRoomContainer" class="last-room">
                             <span>Votre dernière conférence :</span>
@@ -95,15 +87,24 @@
                         <h1 class="titre-accueil espace-accueil">Bienvenue sur HDM Meet</h1>
                         <h2 class="sous-titre-acceuil">L’application HDM de réunions en ligne </h2>
 
-                         <input
-                          id="roomName"
-                          class="form-input"
-                          type="text"
-                          maxlength="32"
-                          style="border-radius: 6px"
-                          placeholder="Veuillez entrer un nom de conférence"
-                         />
-
+                        <input
+                        id="roomNameLarge"
+                        class="form-input input large"
+                        type="text"
+                        maxlength="32"
+                        style="border-radius: 6px"
+                        placeholder="Veuillez entrer un nom de conférence"
+                    />
+                    
+                    <input
+                        id="roomNameSmall"
+                        class="form-input input small"
+                        type="text"
+                        maxlength="32"
+                        style="border-radius: 6px"
+                        placeholder="Nom de conférence"
+                    />
+                    
                         <div class="div-btn">
                             
                             <a class="btn-connexion button button-primary br-6 pulse "  onclick="joinRoom()" > 
@@ -115,8 +116,7 @@
                     </section>
             
                 </div>
-
-                             <script>
+                       <script>
                                 document.getElementById('roomName').onkeyup = (e) => {
                                     if (e.keyCode === 13) {
                                         e.preventDefault();
@@ -124,20 +124,25 @@
                                     }
                                 };
                           
+                    function joinRoom() {
+                        let roomName = '';
+                        if (window.innerWidth <= 600) {
+                            roomName = filterXSS(document.getElementById('roomNameSmall').value);
+                        } else {
+                            roomName = filterXSS(document.getElementById('roomNameLarge').value);
+                        }
                         
-                                function joinRoom() {
-                                    const roomName = filterXSS(document.getElementById('roomName').value);
-                                    if (roomName) {
-                                        window.location.href = '/join/' + roomName;
-                                        window.localStorage.lastRoom = roomName;
-                                    } else {
-                                        alert('Choisissez un nom de conférence svp.');
-                                    }
-                                }
-                            </script>
+                        if (roomName.trim() !== '') {
+                            window.location.href = '/join/' + roomName;
+                            window.localStorage.lastRoom = roomName;
+                        } else {
+                            alert('Choisissez un nom de conférence svp.');
+                        }
+                   }
+
+   </script>
             </div>
 
-        <!-- <script defer src="../js/snow.js"></script> -->
         <script defer src="../js/common.js"></script>
         <script defer src="../js/landing.js"></script>
         <script async defer src="https://buttons.github.io/buttons.js"></script>

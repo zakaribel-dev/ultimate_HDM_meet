@@ -118,7 +118,7 @@
 
 .videoCircle {
     position: absolute;
-    width: var(--vmi-wh);
+    width: 8%;
     height: var(--vmi-wh);
     border-radius: 50%;
     /* center */

@@ -204,15 +204,14 @@ body {
     margin-top: 20px;
     margin-bottom: 10px;
     font-size: 1.5rem;
-    color: white;
+    color: #01619E ;
     border: var(--border);
     border-radius: 5px;
-    background-color: transparent;
+    background: #7d9eb4;
 }
 
 .init-user button:hover {
-    background-color: rgb(58, 100, 154);
-    color: white;
+    background-color: rgb(131, 146, 165);
     transform: scale(1);
 }
 
