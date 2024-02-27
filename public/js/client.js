@@ -782,7 +782,7 @@ function setButtonsToolTip() {
         'Donner la priorité à h.264 avec les codecs AAC ou h.264 avec les codecs Opus sur VP8 avec les codecs Opus ou VP9 avec les codecs Opus',
         'droite',
     );
-    // Boutons du tableau blanc
+    // Boutons du tableau 
     setTippy(wbDrawingColorEl, 'Couleur de dessin', 'bas');
     setTippy(whiteboardGhostButton, 'Basculer le fond transparent', 'bas');
     setTippy(wbBackgroundColorEl, 'Couleur de fond', 'bas');
@@ -833,7 +833,7 @@ function refreshMainButtonsToolTipPlacement() {
     setTippy(captionBtn, 'Ouvrir les sous titres', placement);
     setTippy(roomEmojiPickerBtn, 'Envoyer une réaction', placement);
     setTippy(myHandBtn, 'Lever la main', placement);
-    setTippy(whiteboardBtn, 'Ouvrir le tableau blanc', placement);
+    setTippy(whiteboardBtn, 'Ouvrir le tableau', placement);
     setTippy(fileShareBtn, 'Partager un fichier', placement);
     setTippy(documentPiPBtn, 'Basculer en mode image dans l\'image', placement);
     setTippy(mySettingsBtn, 'Ouvrir les paramètres', placement);
@@ -8167,9 +8167,9 @@ function handleWhiteboardToggle() {
 function toggleWhiteboard() {
     if (!wbIsOpen) {
         playSound('newMessage');
-        setTippy(whiteboardBtn, 'Fermer le tableau blanc', placement);
+        setTippy(whiteboardBtn, 'Fermer le tableau ', placement);
     } else {
-        setTippy(whiteboardBtn, 'Ouvrir le tableau blanc', placement);
+        setTippy(whiteboardBtn, 'Ouvrir le tableau ', placement);
     }
 
     whiteboard.classList.toggle('show');
