@@ -38,27 +38,30 @@
 
         <script src="https://rawgit.com/leizongmin/js-xss/master/dist/xss.js"></script>
 
-        <!-- https://cdnjs.com/libraries/font-awesome -->
-        <link rel="stylesheet" href="/doc/fonts/bespoke-stencil.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,300;1,500&display=swap"
-            rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        
+        <!-- Font-bespoke -->
+            <link rel="stylesheet" href="../doc/fonts/bespoke-stencil.css">
+        
+        <!-- CDN icone -->    
+            <script src="https://kit.fontawesome.com/90363de2b4.js" crossorigin="anonymous"></script>
+        
+        <!-- ma feuille de style -->
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
-
-        <!-- StyleSheet -->
-
-        <link rel="stylesheet" href="../css/landing.css" />
+        <!-- faviscon -->
+        <link rel="icon" type="image/png" href="../doc/img/mini_logo.png">
         <script src="https://kit.fontawesome.com/90363de2b4.js" crossorigin="anonymous"></script>
 
         <!-- JavaScripts -->
+        <link rel="stylesheet" href="../css/landing.css">
 
         <script async src="../js/umami.js"></script>
     </head>
     <body>
 
-                <div class="grid-accueil">
+                <!-- <div class="grid-accueil">
 
                     <header class="section-logo">
                         <div class="div-logo">
@@ -114,6 +117,64 @@
                          
                         </div>             
                     </section>
+
+                </div> -->
+
+                    <div class="grid-accueil">
+
+
+
+                        
+                        <header class="section-logo">
+                
+                
+                            <div class="div-logo ">
+                                <img class="logo-accueil" src="../images/little_logo.svg" title="HDM Meet">
+                            </div>
+                
+                        </header>
+                
+                        <section>
+              
+                            
+                        <div class="espace-accueil" >
+                            <h1 class="titre-accueil">Bienvenue sur HDM Meet</h1>
+                            <p class="sous-titre-acceuil">L’application HDM de réunions en ligne </p>
+                
+                            
+                            <ul class="div-btn">
+                
+                                <li> <input class="formulaire form-accueil" id="roomName"  type="user" placeholder="Nom de conférence ici"> 
+                                
+                                </li>
+                                <li class="div-btn-align"> 
+                                    <a class="btn-primary btn-primary-sm-acceuil connect" onclick="joinRoom()"> Connexion
+                                    </a>
+                                </li>
+                                   
+                            </ul>
+                        </div>
+             
+                        <div id="lastRoomContainer" class="sous-titre-acceuil last-room">
+                            <span>Votre dernière conférence : &nbsp </span> 
+                            <a id="lastRoom"></a>
+                        </div>
+                        <script>
+                            const lastRoomContainer = document.getElementById('lastRoomContainer');
+                            const lastRoom = document.getElementById('lastRoom');
+                            const lastRoomName = window.localStorage.lastRoom
+                                ? window.localStorage.lastRoom
+                                : '';
+                            if (lastRoomName) {
+                                lastRoomContainer.style.display = 'inline-flex';
+                                lastRoom.setAttribute('href', '/join/' + lastRoomName);
+                                lastRoom.innerText = lastRoomName;
+                            }
+                        </script>
+                
+                        </section>
+                
+                    </div>
             
                 </div>
                        <script>
@@ -124,21 +185,16 @@
                                     }
                                 };
                           
-                    function joinRoom() {
-                        let roomName = '';
-                        if (window.innerWidth <= 600) {
-                            roomName = filterXSS(document.getElementById('roomNameSmall').value);
-                        } else {
-                            roomName = filterXSS(document.getElementById('roomNameLarge').value);
-                        }
-                        
-                        if (roomName.trim() !== '') {
-                            window.location.href = '/join/' + roomName;
-                            window.localStorage.lastRoom = roomName;
-                        } else {
-                            alert('Choisissez un nom de conférence svp.');
-                        }
-                   }
+                                        function joinRoom() {
+                                            let roomName = document.getElementById('roomName').value.trim();
+                                            if (roomName !== '') {
+                                                window.location.href = '/join/' + roomName;
+                                                window.localStorage.lastRoom = roomName;
+                                            } else {
+                                                alert('Veuillez entrer un nom de conférence.');
+                                            }
+                                        }
+
 
    </script>
             </div>

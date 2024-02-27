@@ -1,77 +1,61 @@
-<!doctype html>
-<html lang="en" class="no-js">
-    <head>
-        <!-- Title and Icon -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>HDM Meet</title>
-        <link rel="shortcut icon" href="../images/little_logo_blue.svg" />
-        <link rel="apple-touch-icon" href="../images/little_logo_blue.svg" />
+<!-- font-Roboto -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
-        <!-- Meta Information -->
+<!-- Font-bespoke -->
+    <link rel="stylesheet" href="/doc/fonts/bespoke-stencil.css">
 
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- CDN icone -->    
+    <script src="https://kit.fontawesome.com/90363de2b4.js" crossorigin="anonymous"></script>
 
-        <meta
-            name="description"
-            content="HDM Meet"
-        />
-        <meta
-            name="keywords"
-            content="HDM Meet"
-        />
+<!-- ma feuille de style -->
+    <link rel="stylesheet" href="../css/landing.css">
+<!-- faviscon -->
+<link rel="icon" type="image/png" href="doc/img/mini_logo.png">
+    
+    <title>HDM Meet </title>
+</head>
 
-        <!-- https://ogp.me -->
+<body>
 
-        <meta property="og:type" content="app-webrtc" />
-        <meta property="og:site_name" content="HDM Meet" />
-        <meta property="og:title" content="Cliquez ici pour faire une conférence." />
-        <meta
-            property="og:description"
-            content="HDM Meet"
-        />
-        <meta property="og:image" content="https://www.hdmnetwork.com/" />
-        <meta property="og:url" content="https://www.hdmnetwork.com/" />
+    <div class="grid-accueil">
 
-        <!-- xss -->
+        <header class="section-logo section-logo-404 ">
+              
+            <div class="div-logo ">
+                <img class="logo-accueil" src="doc/img/little_logo.svg" alt="" title="HDM Meet">
+            </div>
 
-        <script src="https://rawgit.com/leizongmin/js-xss/master/dist/xss.js"></script>
+        </header>
 
-        <!-- https://cdnjs.com/libraries/font-awesome -->
-        <link rel="stylesheet" href="/doc/fonts/bespoke-stencil.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,300;1,500&display=swap"
-            rel="stylesheet">
+        <section>
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
-
-        <!-- StyleSheet -->
-
-        <link rel="stylesheet" href="../css/landing.css" />
-        <script src="https://kit.fontawesome.com/90363de2b4.js" crossorigin="anonymous"></script>
-
-        <!-- JavaScripts -->
-
-        <script async src="../js/umami.js"></script>
-    </head>
-    <body>
+            <div class="espace-404">
+                <h1 class="titre-accueil error"> Erreur 404 </h1>
+                <br>
+                <h2 class="sous-titre-acceuil"> Oh non! Tu t'es perdu(e)... </h2>
         
-   
+                <p class="index-text"> Allez file.. </p>
 
-            <section>
-    
-                <h1 class="titre-accueil espace-accueil">Tu t'es perdu ?</h1>
-                <h2 class="sous-titre-acceuil">Retourne vers l'accueil : <a href="/">ici</a> </h2>       
-            </section>
-    
-     
+                <div class="div-btn">
+                    
+                    <a class=" btn-404" href="/"> 
+                            Retour à l'accueil
+                    </a>
+                </div> 
+            </div>
+
+        </section>
 
     </div>
+</body>
 
-        <script defer src="../js/common.js"></script>
-        <script defer src="../js/landing.js"></script>
-        <script async defer src="https://buttons.github.io/buttons.js"></script>
-    </body>
+
 </html>

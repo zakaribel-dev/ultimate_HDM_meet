@@ -35,35 +35,39 @@
             rel="stylesheet">
     
     <!-- Font-bespoke -->
-        <link rel="stylesheet" href="/doc/fonts/bespoke-stencil.css">
+        <link rel="stylesheet" href="../doc/fonts/bespoke-stencil.css">
     
 
     <!-- ma feuille de style -->
-    <link rel="stylesheet" href="../css/landing.css" />
+    <link rel="stylesheet" href="./css/landing.css" />
 </head>
 
 
-    <body class="has-animations">
+    <body>
 
     <div class="grid-accueil">
 
         <header class="section-logo">
             <div class="div-logo">
-                <img class="logo-accueil" src="/images/little_logo.svg" alt="" title="HDM Meet">
+                <img class="logo-accueil" src="../images/little_logo.svg" alt="" title="HDM Meet">
               </div>
         </header>
 
     
         <section>
+
+            <div class="content">
             <div class="espaceur">
                 <h1 class="titre-accueil">Identifiez-vous </h1>
             </div>
+            <br>
             
             <section >
              
                                         <div class="mb-12">
 
                                             <input
+                                            class="formulaire form-accueil"
                                             id="username"
                                             type="text"
                                             maxlength="32"
@@ -73,6 +77,7 @@
                                         />
                                         <br>
                                             <input
+                                                class="formulaire form-accueil"
                                                 id="password"
                                                 type="password"
                                                 maxlength="32"
@@ -83,7 +88,7 @@
                                         </div>
 
                                             <div class="div-btn">
-                                                <a class=" btn-connexion "  id="loginButton">
+                                                <a class="btn-primary btn-primary-sm-acceuil connect"  id="loginButton">
                                                     Connexion
                                                 </a>
                             
@@ -93,7 +98,7 @@
                                 </div>
           
             </section>
-
+        </div>
 
         <script>
             console.log(window.location);
@@ -168,15 +173,15 @@
                     return;
                 }
                 if (!username && !password) {
-                    alert('Username and Password required');
+                    alert('Nom d\'utilisateur et mot de passe obligatoires!');
                     return;
                 }
                 if (!username) {
-                    alert('Username required');
+                    alert('Nom d\'utilisateur manquant');
                     return;
                 }
                 if (!password) {
-                    alert('Password required');
+                    alert('Mot de passe manquant');
                     return;
                 }
             }

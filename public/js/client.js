@@ -8109,8 +8109,8 @@ function handleRoomLocked() {
         background: 'white',
         position: 'center',
         imageUrl: images.locked,
-        title: 'Oops, mauvais mot de passe de la chambre.',
-        text: 'La pièce est verrouillée, essayez-en une autre.',
+        title: 'Oops, mauvais mot de passe de la conférence.',
+        text: 'La conférence est verrouillée, essayez-en une autre.',
         showDenyButton: false,
         confirmButtonText: `Ok`,
         showClass: { popup: 'animate__animated animate__fadeInDown' },
@@ -8123,6 +8123,7 @@ function handleRoomLocked() {
 /**
  * Try to unlock the room by providing a valid password
  */
+
 function handleUnlockTheRoom() {
     playSound('alert');
 
