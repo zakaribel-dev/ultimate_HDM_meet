@@ -219,7 +219,6 @@ const initVideoContainer = getQs('.init-video-container');
 const initVideo = getId('initVideo');
 const initVideoBtn = getId('initVideoBtn');
 const initAudioBtn = getId('initAudioBtn');
-const initScreenShareBtn = getId('initScreenShareBtn');
 const initVideoMirrorBtn = getId('initVideoMirrorBtn');
 const initVideoSelect = getId('initVideoSelect');
 const initMicrophoneSelect = getId('initMicrophoneSelect');
@@ -732,7 +731,6 @@ function setButtonsToolTip() {
     // Not need for mobile
     if (isMobileDevice) return;
     // Init buttons
-    setTippy(initScreenShareBtn, 'Basculer le partage d\'écran', 'haut');
     setTippy(initVideoMirrorBtn, 'Basculer le mirroring vidéo', 'haut');
     // Boutons principaux
     refreshMainButtonsToolTipPlacement();
@@ -3885,7 +3883,7 @@ function manageLeftButtons() {
     setAudioBtn();
     setVideoBtn();
     setSwapCameraBtn();
-    // setScreenShareBtn();
+    setScreenShareBtn();
     setRecordStreamBtn();
     setFullScreenBtn();
     setChatRoomBtn();
@@ -3976,25 +3974,23 @@ function setSwapCameraBtn() {
 /**
  * Check if i can share the screen, if yes show button else hide it
  */
-// function setScreenShareBtn() {
-//     if (
-//         !isMobileDevice &&
-//         (navigator.getDisplayMedia || navigator.mediaDevices.getDisplayMedia) &&
-//         buttons.main.showScreenBtn
-//     ) {
-//         isScreenSharingSupported = true;
-//         initScreenShareBtn.addEventListener('click', async (e) => {
-//             await toggleScreenSharing(true);
-//         });
-//         screenShareBtn.addEventListener('click', async (e) => {
-//             await toggleScreenSharing();
-//         });
-//     } else {
-//         elemDisplay(initScreenShareBtn, false);
-//         elemDisplay(screenShareBtn, false);
-//         elemDisplay(screenFpsDiv, false);
-//     }
-// }
+function setScreenShareBtn() {
+    if (
+        !isMobileDevice &&
+        (navigator.getDisplayMedia || navigator.mediaDevices.getDisplayMedia) &&
+        buttons.main.showScreenBtn
+    ) {
+        isScreenSharingSupported = true;
+    
+        screenShareBtn.addEventListener('click', async (e) => {
+            await toggleScreenSharing();
+        });
+    } else {
+        elemDisplay(initScreenShareBtn, false);
+        elemDisplay(screenShareBtn, false);
+        elemDisplay(screenFpsDiv, false);
+    }
+}
 
 /**
  * Start - Stop Stream recording
@@ -6055,14 +6051,14 @@ function recordingOptions(options, audioMixerTracks) {
         background: 'white',
         position: 'top',
         imageUrl: images.recording,
-        title: 'Recording options',
+        title: 'Options d\'enregistrement',
         showDenyButton: true,
         showCancelButton: true,
         cancelButtonColor: 'red',
         denyButtonColor: 'green',
         confirmButtonText: `Camera`,
-        denyButtonText: `Screen/Window`,
-        cancelButtonText: `Cancel`,
+        denyButtonText: `Ecran/fenêtre`,
+        cancelButtonText: `Annuler`,
         showClass: { popup: 'animate__animated animate__fadeInDown' },
         hideClass: { popup: 'animate__animated animate__fadeOutUp' },
     }).then((result) => {
@@ -6408,7 +6404,7 @@ function showChatRoomDraggable() {
     msgerDraggable.style.left = isMobileDevice ? '50%' : '25%';
     msgerDraggable.style.display = 'flex';
     isChatRoomVisible = true;
-    setTippy(chatRoomBtn, 'Close the chat', placement);
+    setTippy(chatRoomBtn, 'Fermer le chat', placement);
 }
 
 /**
@@ -6526,11 +6522,11 @@ function cleanCaptions() {
     Swal.fire({
         background: 'white',
         position: 'center',
-        title: 'Clean up all caption transcripts?',
+        title: 'Effacer les resultats de la reconaissance vocale ?',
         imageUrl: images.delete,
         showDenyButton: true,
-        confirmButtonText: `Yes`,
-        denyButtonText: `No`,
+        confirmButtonText: `Oui`,
+        denyButtonText: `Non`,
         showClass: { popup: 'animate__animated animate__fadeInDown' },
         hideClass: { popup: 'animate__animated animate__fadeOutUp' },
     }).then((result) => {
@@ -6629,7 +6625,7 @@ function handleDataChannelChat(dataMessage) {
     }
     // show message from
     if (!showChatOnMessage) {
-        userLog('toast', `New message from: ${msgFrom}`);
+        userLog('toast', `Nouveau message de : ${msgFrom}`);
     }
 
     setPeerChatAvatarImgName('left', msgFrom);
@@ -6800,11 +6796,11 @@ function appendMessage(from, img, side, msg, privateMsg, msgId = null) {
     msgerChat.insertAdjacentHTML('beforeend', msgHTML);
     msgerChat.scrollTop += 500;
     if (!isMobileDevice) {
-        setTippy(getId('msg-delete-' + chatMessagesId), 'Delete', 'top');
-        setTippy(getId('msg-copy-' + chatMessagesId), 'Copy', 'top');
-        setTippy(getId('msg-speech-' + chatMessagesId), 'Speech', 'top');
+        setTippy(getId('msg-delete-' + chatMessagesId), 'Supprimer', 'top');
+        setTippy(getId('msg-copy-' + chatMessagesId), 'Copier', 'top');
+        setTippy(getId('msg-speech-' + chatMessagesId), 'à voix haute', 'top');
         if (isValidPrivateMessage) {
-            setTippy(getId('msg-private-reply-' + chatMessagesId), 'Reply', 'top');
+            setTippy(getId('msg-private-reply-' + chatMessagesId), 'Répondre', 'top');
         }
     }
     chatMessagesId++;
@@ -6820,7 +6816,7 @@ function appendMessage(from, img, side, msg, privateMsg, msgId = null) {
  */
 function speechMessage(newMsg = true, from, msg) {
     const speech = new SpeechSynthesisUtterance();
-    speech.text = (newMsg ? 'New' : '') + ' message from:' + from + '. The message is:' + msg;
+    speech.text = (newMsg ? 'Nouveau' : '') + ' Message de :' + from + '. Le message dit :' + msg;
     speech.rate = 0.9;
     window.speechSynthesis.speak(speech);
 }
@@ -6834,7 +6830,7 @@ function deleteMessage(id) {
     Swal.fire({
         background: 'white',
         position: 'center',
-        title: 'Delete this messages?',
+        title: 'Supprimer ce message ?',
         imageUrl: images.delete,
         showDenyButton: true,
         confirmButtonText: `Yes`,
@@ -6859,7 +6855,7 @@ function copyToClipboard(id) {
     navigator.clipboard
         .writeText(text)
         .then(() => {
-            msgPopup('success', 'Message copied!', 'top-end', 1000);
+            msgPopup('success', 'Message copié !', 'top-end', 1000);
         })
         .catch((err) => {
             msgPopup('error', err, 'top', 2000);
@@ -8981,15 +8977,15 @@ function selectFileToShare(peer_id, broadcast = false) {
         imageAlt: 'HDM partage de fichier',
         imageUrl: images.share,
         position: 'center',
-        title: 'Share file',
+        title: 'Partager un fichier',
         input: 'file',
         inputAttributes: {
             accept: fileSharingInput,
-            'aria-label': 'Select file',
+            'aria-label': 'Selectionnerle fichier',
         },
         showDenyButton: true,
-        confirmButtonText: `Send`,
-        denyButtonText: `Cancel`,
+        confirmButtonText: `Envoyer`,
+        denyButtonText: `Annuler`,
         showClass: { popup: 'animate__animated animate__fadeInDown' },
         hideClass: { popup: 'animate__animated animate__fadeOutUp' },
     }).then((result) => {

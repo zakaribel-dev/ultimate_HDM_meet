@@ -110,11 +110,6 @@ const apiBasePath = '/api/v1'; // api endpoint path
 const api_docs = host + apiBasePath + '/docs'; // api docs
 const api_key_secret = process.env.API_KEY_SECRET || 'mirotalk_default_secret';
 
-// Ngrok config
-const ngrok = require('ngrok');
-const ngrokEnabled = getEnvBoolean(process.env.NGROK_ENABLED);
-const ngrokAuthToken = process.env.NGROK_AUTH_TOKEN;
-
 // Stun (https://bloggeek.me/webrtcglossary/stun/)
 // Turn (https://bloggeek.me/webrtcglossary/turn/)
 const iceServers = [];
@@ -178,41 +173,10 @@ if (sentryEnabled) {
     });
 }
 
-// OpenAI/ChatGPT
-let chatGPT;
-const configChatGPT = {
-    enabled: getEnvBoolean(process.env.CHATGPT_ENABLED),
-    basePath: process.env.CHATGPT_BASE_PATH,
-    apiKey: process.env.CHATGTP_APIKEY,
-    model: process.env.CHATGTP_MODEL,
-    max_tokens: parseInt(process.env.CHATGPT_MAX_TOKENS),
-    temperature: parseInt(process.env.CHATGPT_TEMPERATURE),
-};
-if (configChatGPT.enabled) {
-    if (configChatGPT.apiKey) {
-        const { OpenAI } = require('openai');
-        const configuration = {
-            basePath: configChatGPT.basePath,
-            apiKey: configChatGPT.apiKey,
-        };
-        chatGPT = new OpenAI(configuration);
-    } else {
-        log.warning('ChatGPT seems enabled, but you missing the apiKey!');
-    }
-}
 
-// IP Whitelist
-const ipWhitelist = {
-    enabled: getEnvBoolean(process.env.IP_WHITELIST_ENABLED),
-    allowed: process.env.IP_WHITELIST_ALLOWED ? JSON.parse(process.env.IP_WHITELIST_ALLOWED) : [],
-};
 
-// stats configuration
-const statsData = {
-    enabled: process.env.STATS_ENABLED ? getEnvBoolean(process.env.STATS_ENABLED) : true,
-    src: process.env.STATS_SCR || 'https://stats.mirotalk.com/script.js',
-    id: process.env.STATS_ID || 'c7615aa7-ceec-464a-baba-54cb605d7261',
-};
+
+
 
 // directory
 const dir = {
@@ -241,18 +205,6 @@ app.use(express.static(dir.public)); // Use all static files from the public fol
 app.use(bodyParser.urlencoded({ extended: true })); // Need for Slack API body parser
 app.use(apiBasePath + '/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument)); // api docs
 
-// Restrict access to specified IP
-app.use((req, res, next) => {
-    if (!ipWhitelist.enabled) return next();
-    const clientIP = getIP(req);
-    log.debug('Check IP', clientIP);
-    if (ipWhitelist.allowed.includes(clientIP)) {
-        next();
-    } else {
-        log.info('Forbidden: Access denied from this IP address', { clientIP: clientIP });
-        res.status(403).json({ error: 'Forbidden', message: 'Access denied from this IP address.' });
-    }
-});
 
 // Logs requests
 app.use((req, res, next) => {
@@ -303,11 +255,7 @@ app.get(['/'], (req, res) => {
     }
 });
 
-// Get stats endpoint
-app.get(['/stats'], (req, res) => {
-    //log.debug('Send stats', statsData);
-    res.send(statsData);
-});
+
 
 // mirotalk about
 app.get(['/about'], (req, res) => {
@@ -415,8 +363,9 @@ app.get('/join/:roomId', function (req, res) {
 });
 
 // Not specified correctly the room id
-app.get('/join/*', function (req, res) {
+app.get('/join/*', function (req, res) {openai
     res.redirect('/');
+
 });
 
 // Login
@@ -575,15 +524,9 @@ app.get('*', function (req, res) {
 function getServerConfig(tunnel = false) {
     return {
         iceServers: iceServers,
-        stats: statsData,
         host: hostCfg,
         jwtCfg: jwtCfg,
         presenters: roomPresenters,
-        ip_whitelist: ipWhitelist,
-        ngrok: {
-            ngrok_enabled: ngrokEnabled,
-            ngrok_token: ngrokEnabled ? ngrokAuthToken : '',
-        },
         server: host,
         cors: corsOptions,
         server_tunnel: tunnel,
@@ -593,7 +536,6 @@ function getServerConfig(tunnel = false) {
         use_self_signed_certificate: isHttps,
         turn_enabled: turnServerEnabled,
         ip_lookup_enabled: IPLookupEnabled,
-        chatGPT_enabled: configChatGPT.enabled,
         slack_enabled: slackEnabled,
         sentry_enabled: sentryEnabled,
         survey_enabled: surveyEnabled,
@@ -605,27 +547,8 @@ function getServerConfig(tunnel = false) {
     };
 }
 
-/**
- * Expose server to external with https tunnel using ngrok
- * https://ngrok.com
- */
-async function ngrokStart() {
-    try {
-        await ngrok.authtoken(ngrokAuthToken);
-        await ngrok.connect(port);
-        const api = ngrok.getApi();
-        const list = await api.listTunnels();
-        const tunnel = list.tunnels[0].public_url;
-        log.info('Server config', getServerConfig(tunnel));
-    } catch (err) {
-        log.warn('[Error] ngrokStart', err.body);
-        process.exit(1);
-    }
-}
 
-/**
- * Start Local Server with ngrok https tunnel (optional)
- */
+
 server.listen(port, null, () => {
     log.debug(
         `%c
@@ -641,25 +564,22 @@ server.listen(port, null, () => {
         'font-family:monospace',
     );
 
-    // https tunnel
-    if (ngrokEnabled && isHttps === false) {
-        ngrokStart();
-    } else {
+
         log.info('Server config', getServerConfig());
-    }
+    
 });
 
+
 /**
- * On peer connected
- * Users will connect to the signaling server, after which they'll issue a "join"
- * to join a particular channel. The signaling server keeps track of all sockets
- * who are in a channel, and on join will send out 'addPeer' events to each pair
- * of users in a channel. When clients receive the 'addPeer' even they'll begin
- * setting up an RTCPeerConnection with one another. During this process they'll
- * need to relay ICECandidate information to one another, as well as SessionDescription
- * information. After all of that happens, they'll finally be able to complete
- * the peer connection and will be in streaming audio/video between eachother.
- */
+Lorsqu'un peer se connecte
+Les users se connecteront au serveur de signalisation, après quoi ils émettront une "join"
+pour rejoindre un canal particulier. Le serveur de signalisation garde une trace de tous les sockets
+qui sont dans un canal, et lors de la jonction enverra des événements 'addPeer' à chaque peer users dans un canal. 
+Lorsque les clients reçoivent l'événement 'addPeer', ils commenceront
+à configurer une connexion RTCPeerConnection entre eux. Pendant ce processus, ils devront relayer
+les informations ICECandidate l'un à l'autre et les informations SessionDescription.
+Après que tout cela se soit passé, ils pourront enfin compléter la connexion entre pairs et seront en streaming audio/vidéo entre eux.
+*/
 io.sockets.on('connect', async (socket) => {
     log.debug('[' + socket.id + '] connection accepted', {
         host: socket.handshake.headers.host.split(':')[0],
@@ -669,14 +589,14 @@ io.sockets.on('connect', async (socket) => {
     socket.channels = {};
     sockets[socket.id] = socket;
 
-    const transport = socket.conn.transport.name; // in most cases, "polling"
+    const transport = socket.conn.transport.name; 
     log.debug('[' + socket.id + '] Connection transport', transport);
 
     /**
      * Check upgrade transport
      */
     socket.conn.on('upgrade', () => {
-        const upgradedTransport = socket.conn.transport.name; // in most cases, "websocket"
+        const upgradedTransport = socket.conn.transport.name;
         log.debug('[' + socket.id + '] Connection upgraded transport', upgradedTransport);
     });
 
@@ -713,43 +633,7 @@ io.sockets.on('connect', async (socket) => {
                     }
                 }
                 break;
-            case 'getChatGPT':
-                // https://platform.openai.com/docs/introduction
-                if (!configChatGPT.enabled) return cb('ChatGPT seems disabled, try later!');
-                try {
-                    // https://platform.openai.com/docs/api-reference/completions/create
-                    const completion = await chatGPT.completions.create({
-                        model: configChatGPT.model || 'gpt-3.5-turbo-instruct',
-                        prompt: params.prompt,
-                        max_tokens: configChatGPT.max_tokens || 1000,
-                        temperature: configChatGPT.temperature || 0,
-                    });
-                    const response = completion.choices[0].text;
-                    log.info('ChatGPT', {
-                        time: params.time,
-                        room: room_id,
-                        name: peer_name,
-                        prompt: params.prompt,
-                        response: response,
-                    });
-                    cb(response);
-                } catch (error) {
-                    if (error.name === 'APIError') {
-                        log.error('ChatGPT', {
-                            name: error.name,
-                            status: error.status,
-                            message: error.message,
-                            code: error.code,
-                            type: error.type,
-                        });
-                        cb(error.message);
-                    } else {
-                        // Non-API error
-                        log.error('ChatGPT', error);
-                        cb(error.message);
-                    }
-                }
-                break;
+        
             //....
             default:
                 cb(false);

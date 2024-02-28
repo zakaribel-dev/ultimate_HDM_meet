@@ -93,7 +93,7 @@ if (speechRecognition) {
         elemDisplay(speechRecognitionStart, false);
         elemDisplay(speechRecognitionStop, true, 'block');
         setColor(speechRecognitionIcon, 'lime');
-        userLog('toast', 'Speech recognition started');
+        userLog('toast', 'Reconnaissance vocale en cours');
     };
 
     // Detect the said words
@@ -129,11 +129,11 @@ if (speechRecognition) {
 
     recognition.onend = function () {
         console.log('Speech recognition stopped');
-        // if (recognitionRunning) recognition.start();
+        if (recognitionRunning) recognition.start();
         elemDisplay(speechRecognitionStop, false);
         elemDisplay(speechRecognitionStart, true, 'block');
         setColor(speechRecognitionIcon, 'white');
-        userLog('toast', 'Speech recognition stopped');
+        userLog('toast', 'Reconnaissance vocale stoppé');
     };
 
     isWebkitSpeechRecognitionSupported = true;
@@ -165,9 +165,9 @@ function handleRecognitionLanguages() {
     for (let i = 0; i < langs.length; i++) {
         recognitionLanguage.options[i] = new Option(langs[i][0], i);
     }
-    recognitionLanguage.selectedIndex = 6;
+    recognitionLanguage.selectedIndex = 9;
     updateCountry();
-    recognitionDialect.selectedIndex = 6;
+    recognitionDialect.selectedIndex = 9;
     recognitionLanguage.addEventListener('change', () => {
         updateCountry();
     });
