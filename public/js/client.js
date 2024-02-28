@@ -6,17 +6,6 @@
  ██████ ███████ ██ ███████ ██   ████    ██   
 */
 
-/**
- * MiroTalk P2P - Client component
- *
- * @link    Official Live demo: https://p2p.mirotalk.com
- * @license For open source use: AGPLv3
- * @license For commercial use or closed source, contact us at license.mirotalk@gmail.com or purchase directly from CodeCanyon
- * @license CodeCanyon: https://codecanyon.net/item/mirotalk-p2p-webrtc-realtime-video-conferences/38376661
- * @author  Miroslav Pejic - miroslav.pejic.85@gmail.com
- * @version 1.2.89
- *
- */
 
 'use strict';
 
@@ -1369,9 +1358,7 @@ async function whoAreYou() {
         elemDisplay(document.getElementById('initSpeakerSelect'), false);
         elemDisplay(document.getElementById('tabAudioBtn'), false);
     }
-    if (!buttons.main.showScreenBtn) {
-        elemDisplay(document.getElementById('initScreenShareBtn'), false);
-    }
+
 
     initUser.classList.toggle('hidden');
 
