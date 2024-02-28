@@ -1383,15 +1383,16 @@ input:checked + .slider:before {
 # Pulse class effect
 --------------------------------------------------------------*/
 
-.pulsate {
-    animation: pulsate 3s ease-out;
+.fadeIn {
+    animation: fadeIn 2s ease-out;
     animation-iteration-count: infinite;
-    -webkit-animation: pulsate 3s ease-out;
+    -webkit-animation: fadeIn 3s ease-out;
     -webkit-animation-iteration-count: infinite;
     opacity: 0.5;
 }
 
-@-webkit-keyframes pulsate {
+
+@-webkit-keyframes fadeIn {
     0% {
         opacity: 0.5;
     }
@@ -1403,7 +1404,7 @@ input:checked + .slider:before {
     }
 }
 
-@keyframes pulsate {
+@keyframes fadeIn {
     0% {
         opacity: 0.5;
     }
@@ -1415,7 +1416,7 @@ input:checked + .slider:before {
     }
 }
 
-@-webkit-keyframes pulsate {
+@-webkit-keyframes fadeIn {
     0% {
         opacity: 0.5;
     }
