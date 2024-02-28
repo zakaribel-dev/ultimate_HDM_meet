@@ -3973,7 +3973,6 @@ function setScreenShareBtn() {
             await toggleScreenSharing();
         });
     } else {
-        elemDisplay(initScreenShareBtn, false);
         elemDisplay(screenShareBtn, false);
         elemDisplay(screenFpsDiv, false);
     }
