@@ -21,7 +21,7 @@ const packageJson = require('../../package.json');
 
 const domain = process.env.HOST || 'localhost';
 const isHttps = process.env.HTTPS == 'true';
-const port = process.env.PORT || 3000; // must be the same to client.js signalingServerPort
+const port = process.env.PORT || 3000; // doit être le même que signalingServerPort dans client.js
 const host = `http${isHttps ? 's' : ''}://${domain}:${port}`;
 
 let server, authHost;
@@ -67,7 +67,7 @@ const corsOptions = {
 };
 
 /*  
-    Set maxHttpBufferSize from 1e6 (1MB) to 1e7 (10MB)
+   taille du buffer, 1e6 = 1mb, 1e7 = 10MB
 */
 const io = new Server({
     maxHttpBufferSize: 1e7,
@@ -77,7 +77,7 @@ const io = new Server({
 
 // console.log(io);
 
-// Host protection (disabled by default)
+// Host protection 
 const hostProtected = getEnvBoolean(process.env.HOST_PROTECTED);
 const userAuth = getEnvBoolean(process.env.HOST_USER_AUTH);
 const hostUsersString = process.env.HOST_USERS || '[{"username": "MiroTalk", "password": "P2P"}]';
@@ -91,24 +91,23 @@ const hostCfg = {
 
 // JWT config
 const jwtCfg = {
-    JWT_KEY: process.env.JWT_KEY || 'mirotalk_jwt_secret',
+    JWT_KEY: process.env.JWT_KEY || 'HDM MEET',
     JWT_EXP: process.env.JWT_EXP || '1h',
 };
 
-// Room presenters
-const roomPresentersString = process.env.PRESENTERS || '["MiroTalk P2P"]';
+// Présentateurs dans la room
+const roomPresentersString = process.env.PRESENTERS;
 const roomPresenters = JSON.parse(roomPresentersString);
 
-// Swagger config
+// config swagger
 const yamlJS = require('yamljs');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = yamlJS.load(path.join(__dirname + '/../api/swagger.yaml'));
 
 // Api config
 const { v4: uuidV4 } = require('uuid');
-const apiBasePath = '/api/v1'; // api endpoint path
-const api_docs = host + apiBasePath + '/docs'; // api docs
-const api_key_secret = process.env.API_KEY_SECRET || 'mirotalk_default_secret';
+const apiBasePath = '/api/v1'; //  endpoint path
+const api_key_secret = process.env.API_KEY_SECRET || 'HDM MEET';
 
 // Stun (https://bloggeek.me/webrtcglossary/stun/)
 // Turn (https://bloggeek.me/webrtcglossary/turn/)
@@ -119,34 +118,18 @@ const turnServerUsername = process.env.TURN_SERVER_USERNAME;
 const turnServerCredential = process.env.TURN_SERVER_CREDENTIAL;
 const stunServerEnabled = getEnvBoolean(process.env.STUN_SERVER_ENABLED);
 const turnServerEnabled = getEnvBoolean(process.env.TURN_SERVER_ENABLED);
-// Stun is mandatory for not internal network
+// Les servers STUN sont push 
 if (stunServerEnabled && stunServerUrl) iceServers.push({ urls: stunServerUrl });
-// Turn is recommended if direct peer to peer connection is not possible
+// Les servers TURN sont push
 if (turnServerEnabled && turnServerUrl && turnServerUsername && turnServerCredential) {
     iceServers.push({ urls: turnServerUrl, username: turnServerUsername, credential: turnServerCredential });
 }
 
-// Test Stun and Turn connection with query params
-// const testStunTurn = host + '/test?iceServers=' + JSON.stringify(iceServers);
-const testStunTurn = host + '/test';
 
-// IP Lookup
-const IPLookupEnabled = getEnvBoolean(process.env.IP_LOOKUP_ENABLED);
-
-// Survey URL
-const surveyEnabled = getEnvBoolean(process.env.SURVEY_ENABLED);
-const surveyURL = process.env.SURVEY_URL || 'https://www.questionpro.com/t/AUs7VZq00L';
 
 // Redirect URL
 const redirectEnabled = getEnvBoolean(process.env.REDIRECT_ENABLED);
 const redirectURL = process.env.REDIRECT_URL || '/';
-
-// Sentry config
-const Sentry = require('@sentry/node');
-const { CaptureConsole } = require('@sentry/integrations');
-const sentryEnabled = getEnvBoolean(process.env.SENTRY_ENABLED);
-const sentryDSN = process.env.SENTRY_DSN;
-const sentryTracesSampleRate = process.env.SENTRY_TRACES_SAMPLE_RATE;
 
 // Slack API
 const CryptoJS = require('crypto-js');
@@ -155,28 +138,6 @@ const slackEnabled = getEnvBoolean(process.env.SLACK_ENABLED);
 const slackSigningSecret = process.env.SLACK_SIGNING_SECRET;
 const bodyParser = require('body-parser');
 
-// Setup sentry client
-if (sentryEnabled) {
-    Sentry.init({
-        dsn: sentryDSN,
-        integrations: [
-            new CaptureConsole({
-                // array of methods that should be captured
-                // defaults to ['log', 'info', 'warn', 'error', 'debug', 'assert']
-                levels: ['warn', 'error'],
-            }),
-        ],
-        // Set tracesSampleRate to 1.0 to capture 100%
-        // of transactions for performance monitoring.
-        // We recommend adjusting this value in production
-        tracesSampleRate: sentryTracesSampleRate,
-    });
-}
-
-
-
-
-
 
 // directory
 const dir = {
@@ -184,13 +145,10 @@ const dir = {
 };
 // html views
 const views = {
-    about: path.join(__dirname, '../../', 'public/views/about.html'),
     client: path.join(__dirname, '../../', 'public/views/client.html'),
     landing: path.join(__dirname, '../../', 'public/views/landing.html'),
     login: path.join(__dirname, '../../', 'public/views/login.html'),
     notFound: path.join(__dirname, '../../', 'public/views/404.html'),
-    privacy: path.join(__dirname, '../../', 'public/views/privacy.html'),
-    stunTurn: path.join(__dirname, '../../', 'public/views/testStunTurn.html'),
 };
 
 const channels = {}; // collect channels
@@ -256,12 +214,6 @@ app.get(['/'], (req, res) => {
 });
 
 
-
-// mirotalk about
-app.get(['/about'], (req, res) => {
-    res.sendFile(views.about);
-});
-
 // set new room name and join
 app.get(['/'], (req, res) => {
     if (hostCfg.protected) {
@@ -277,18 +229,6 @@ app.get(['/'], (req, res) => {
     }
 });
 
-// privacy policy
-app.get(['/privacy'], (req, res) => {
-    res.sendFile(views.privacy);
-});
-
-// test Stun and Turn connections
-app.get(['/test'], (req, res) => {
-    if (Object.keys(req.query).length > 0) {
-        log.debug('Request Query', req.query);
-    }
-    res.sendFile(views.stunTurn);
-});
 
 // no room name specified to join
 app.get('/join/', (req, res) => {
@@ -420,10 +360,8 @@ app.post(['/login'], (req, res) => {
     }
 });
 
-/**
-    MiroTalk API v1
-    For api docs we use: https://swagger.io/
-*/
+
+
 
 // API request meeting room endpoint
 app.post([`${apiBasePath}/meeting`], (req, res) => {
@@ -465,10 +403,8 @@ app.post([`${apiBasePath}/join`], (req, res) => {
     });
 });
 
-/*
-    MiroTalk Slack app v1
-    https://api.slack.com/authentication/verifying-requests-from-slack
-*/
+
+
 
 //Slack request meeting room endpoint
 app.post('/slack', (req, res) => {
@@ -506,10 +442,15 @@ app.post('/slack', (req, res) => {
  * @returns  entrypoint / Room URL for your meeting.
  */
 function getMeetingURL(host) {
-    return 'http' + (host.includes('localhost') ? '' : 's') + '://' + host + '/join/' + uuidV4();
+    return 'http' + (host.includes('localhost') ? '' : 's') + '://' + host + '/join/' + uuidV4();    //si c'est localhost je concatene rien à http sinon je lui fou un s pour donner https
 }
 
-// end of MiroTalk API v1
+
+
+
+
+
+
 
 // not match any of page before, so 404 not found
 app.get('*', function (req, res) {
@@ -530,17 +471,11 @@ function getServerConfig(tunnel = false) {
         server: host,
         cors: corsOptions,
         server_tunnel: tunnel,
-        test_ice_servers: testStunTurn,
-        api_docs: api_docs,
         api_key_secret: api_key_secret,
         use_self_signed_certificate: isHttps,
         turn_enabled: turnServerEnabled,
-        ip_lookup_enabled: IPLookupEnabled,
         slack_enabled: slackEnabled,
-        sentry_enabled: sentryEnabled,
-        survey_enabled: surveyEnabled,
         redirect_enabled: redirectEnabled,
-        survey_url: surveyURL,
         redirect_url: redirectURL,
         node_version: process.versions.node,
         app_version: packageJson.version,
@@ -649,10 +584,7 @@ io.sockets.on('connect', async (socket) => {
         // Get peer IPv4 (::1 Its the loopback address in ipv6, equal to 127.0.0.1 in ipv4)
         const peer_ip = socket.handshake.headers['x-forwarded-for'] || socket.conn.remoteAddress;
 
-        // Get peer Geo Location
-        if (IPLookupEnabled && peer_ip != '::1') {
-            cfg.peer_geo = await getPeerGeoLocation(peer_ip);
-        }
+
 
         // Prevent XSS injection
         const config = checkXSS(cfg);
@@ -699,7 +631,9 @@ io.sockets.on('connect', async (socket) => {
 
                     const isPeerValid = isAuthPeer(username, password);
 
-                    is_presenter = presenter === '1' || presenter === 'true';
+                    is_presenter =
+                    presenter === '1' || presenter === 'true' || Object.keys(presenters[channel]).length === 0;
+
 
                     log.debug('[' + socket.id + '] JOIN ROOM - USER AUTH check peer', {
                         ip: peer_ip,
@@ -726,7 +660,7 @@ io.sockets.on('connect', async (socket) => {
 
         // room locked by the participants can't join
         if (peers[channel]['lock'] === true && peers[channel]['password'] != channel_password) {
-            log.debug('[' + socket.id + '] [Warning] Room Is Locked', channel);
+            log.debug('[' + socket.id + '] [Attention] La conférence est verrouillée', channel);
             return socket.emit('roomIsLocked');
         }
 
@@ -785,10 +719,6 @@ io.sockets.on('connect', async (socket) => {
             host_protected: hostCfg.protected,
             user_auth: hostCfg.user_auth,
             is_presenter: isPresenter,
-            survey: {
-                active: surveyEnabled,
-                url: surveyURL,
-            },
             redirect: {
                 active: redirectEnabled,
                 url: redirectURL,
@@ -1325,7 +1255,7 @@ async function isPeerPresenter(room_id, peer_id, peer_name, peer_uuid) {
                 presenters[room_id][peer_id]['peer_uuid'] === peer_uuid) ||
             (roomPresenters && roomPresenters.includes(peer_name));
 
-        log.debug('[' + peer_id + '] isPeerPresenter', presenters[room_id][peer_id]);
+        log.debug('[' + peer_id + '] isPeerPresenter', presenters[room_id][peer_id] + "roomPresenters : " + roomPresenters, "peerName :" + peer_id_name);
 
         return isPresenter;
     } catch (err) {

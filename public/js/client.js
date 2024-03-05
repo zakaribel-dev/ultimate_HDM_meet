@@ -31,7 +31,6 @@ const images = {
     message: '../images/message.png',
     leave: '../images/leave-room.png',
     vaShare: '../images/va-share.png',
-    about: '../images/mirotalk-logo.gif',
     feedback: '../images/feedback.png',
     forbidden: '../images/forbidden.png',
     avatar: '../images/mirotalk-logo.png',
@@ -1435,7 +1434,6 @@ async function whoAreYou() {
 
     setTippy(initAudioBtn, 'Couper votre micro', 'top');
     setTippy(initVideoBtn, 'Cacher votre vidéo', 'top');
-    setTippy(initScreenShareBtn, 'Lancer un partage d\'écran', 'top');
     setTippy(initVideoMirrorBtn, 'Inverser votre vidéo', 'top');
 }
 
@@ -1716,7 +1714,7 @@ function checkPeerAudioVideo() {
  * Room and Peer name are ok Join Channel
  */
 async function whoAreYouJoin() {
-    myVideoParagraph.innerText = myPeerName + ' (me)';
+    myVideoParagraph.innerText = myPeerName + ' (moi)';
     setPeerAvatarImgName('myVideoAvatarImage', myPeerName);
     setPeerAvatarImgName('myProfileAvatar', myPeerName);
     setPeerChatAvatarImgName('right', myPeerName);
@@ -2801,10 +2799,10 @@ function checkShareScreen() {
             background: 'white',
             position: 'center',
             icon: 'question',
-            text: 'Do you want to share your screen?',
+            text: 'Voulez vous partager votre écran ?',
             showDenyButton: true,
-            confirmButtonText: `Yes`,
-            denyButtonText: `No`,
+            confirmButtonText: `Oui`,
+            denyButtonText: `Non`,
             showClass: { popup: 'animate__animated animate__fadeInDown' },
             hideClass: { popup: 'animate__animated animate__fadeOutUp' },
         }).then((result) => {
@@ -4062,7 +4060,7 @@ function setChatRoomBtn() {
         if (chatMessages.length != 0) {
             return cleanMessages();
         }
-        userLog('info', 'No chat messages to delete');
+        userLog('info', 'Pas de messages à supprimer');
     });
 
     // save chat messages to file
@@ -4070,7 +4068,7 @@ function setChatRoomBtn() {
         if (chatMessages.length != 0) {
             return downloadChatMsgs();
         }
-        userLog('info', 'No chat messages to save');
+        userLog('info', 'as de messages à sauvegarder');
     });
 
     // close chat room - show left button and status menu if hide
@@ -5325,7 +5323,7 @@ function copyRoomURL() {
     navigator.clipboard.writeText(tmpInput.value);
     console.log('Copied to clipboard Join Link ', roomURL);
     document.body.removeChild(tmpInput);
-    userLog('toast', 'Meeting URL copied to clipboard 👍');
+    userLog('toast', 'URL de la conférence copié 👍');
 }
 
 /**
@@ -5335,32 +5333,34 @@ function shareRoomByEmail() {
     Swal.fire({
         allowOutsideClick: false,
         allowEscapeKey: false,
-        background: 'white',
+        background: 'blue',
         imageUrl: images.message,
         position: 'center',
-        title: 'Select a Date and Time',
-        html: '<input type="text" id="datetimePicker" class="flatpickr" />',
+        title: 'Selectionnez date et heure',
+        html: '<input type="text" id="datetimePicker" class="flatpickr" placeholder="Cliquez ici" />',
         showCancelButton: true,
         confirmButtonText: 'OK',
         cancelButtonColor: 'red',
+        cancelButtonText: "Annuler",
         showClass: { popup: 'animate__animated animate__fadeInDown' },
         hideClass: { popup: 'animate__animated animate__fadeOutUp' },
         preConfirm: () => {
             const roomURL = getRoomURL();
             const newLine = '%0D%0A%0D%0A';
             const selectedDateTime = document.getElementById('datetimePicker').value;
-            const roomPassword = isRoomLocked && thisRoomPassword ? 'Password: ' + thisRoomPassword + newLine : '';
+            const roomPassword = isRoomLocked && thisRoomPassword ? 'Mot de passe : ' + thisRoomPassword + newLine : '';
             const email = '';
-            const emailSubject = `Please join our MiroTalk P2P Video Chat Meeting`;
-            const emailBody = `The meeting is scheduled at: ${newLine} DateTime: ${selectedDateTime} ${newLine}${roomPassword}Click to join: ${roomURL} ${newLine}`;
+            const emailSubject = `Merci de nous rejoindre en conférence en cliquant ici`;
+            const emailBody = `La conférence est prévue pour le : ${newLine} à : ${selectedDateTime} ${newLine}${roomPassword}Cliquez ici : ${roomURL} ${newLine}`;
             document.location = 'mailto:' + email + '?subject=' + emailSubject + '&body=' + emailBody;
         },
     });
     flatpickr('#datetimePicker', {
         enableTime: true,
-        dateFormat: 'Y-m-d H:i',
+        dateFormat: 'd-m-Y H:i', 
         time_24hr: true,
     });
+    
 }
 
 /**
@@ -6177,7 +6177,7 @@ function getAudioStreamFromAudioElements() {
  * @param {string} action recording action
  */
 function notifyRecording(fromId, from, action) {
-    const msg = '🔴 ' + action + ' recording.';
+    const msg = '🔴 ' + action + ' Enregistrement.';
     const chatMessage = {
         from: from,
         fromId: fromId,
@@ -6187,7 +6187,7 @@ function notifyRecording(fromId, from, action) {
     };
     handleDataChannelChat(chatMessage);
     if (!showChatOnMessage) {
-        msgHTML(null, images.recording, null, `${from}<br /><h1>${action} recording</h1>`);
+        msgHTML(null, images.recording, null, `${from}<br /><h1>${action} enregistrement</h1>`);
     }
 }
 
@@ -6238,7 +6238,7 @@ function handleMediaRecorderStop(event) {
     emitPeersAction('recStop');
     emitPeerStatus('rec', false);
     isStreamRecording = false;
-    myVideoParagraph.innerText = myPeerName + ' (me)';
+    myVideoParagraph.innerText = myPeerName + ' (moi)';
     if (isRecScreenStream) {
         recScreenStream.getTracks().forEach((track) => {
             if (track.kind === 'video') track.stop();
@@ -6478,11 +6478,11 @@ function cleanMessages() {
     Swal.fire({
         background: 'white',
         position: 'center',
-        title: 'Effacer messages du chat ??',
+        title: 'Effacer le(s) message(s) du chat ?',
         imageUrl: images.delete,
         showDenyButton: true,
-        confirmButtonText: `Yes`,
-        denyButtonText: `No`,
+        confirmButtonText: `Oui`,
+        denyButtonText: `Non`,
         showClass: { popup: 'animate__animated animate__fadeInDown' },
         hideClass: { popup: 'animate__animated animate__fadeOutUp' },
     }).then((result) => {
@@ -6560,7 +6560,7 @@ async function sendChatMessage() {
     if (!thereArePeerConnections() && !isChatGPTOn) {
         cleanMessageInput();
         isChatPasteTxt = false;
-        return userLog('info', "Can't send message, no participants in the room");
+        return userLog('info', "Pas d'envoi de message si aucun utilisateur n\'est présent !");
     }
 
     msgerInput.value = filterXSS(msgerInput.value.trim());
@@ -7337,7 +7337,7 @@ async function updateMyPeerName() {
     const myOldPeerName = myPeerName;
 
     myPeerName = myNewPeerName;
-    myVideoParagraph.innerText = myPeerName + ' (me)';
+    myVideoParagraph.innerText = myPeerName + ' (moi)';
 
     sendToServer('peerName', {
         room_id: roomId,
@@ -8061,13 +8061,13 @@ function handleRoomStatus(config) {
     switch (action) {
         case 'lock':
             playSound('locked');
-            userLog('toast', `${icons.user} ${peer_name} \n a 🔒 verrouillé la conférence par un mot de passe`, 'top-end');
+            userLog('toast', `${peer_name} \n a 🔒 verrouillé la conférence par un mot de passe`, 'top-end');
             elemDisplay(lockRoomBtn, false);
             elemDisplay(unlockRoomBtn, true);
             isRoomLocked = true;
             break;
         case 'unlock':
-            userLog('toast', `${icons.user} ${peer_name} \n a 🔓 déverrouillé la conférence`, 'top-end');
+            userLog('toast', `${peer_name} \n a 🔓 déverrouillé la conférence`, 'top-end');
             elemDisplay(unlockRoomBtn, false);
             elemDisplay(lockRoomBtn, true);
             isRoomLocked = false;
@@ -8660,7 +8660,7 @@ function wbCanvasToJson() {
 async function wbUpdate() {
     if (wbIsOpen && thereArePeerConnections()) {
         wbCanvasToJson();
-        whiteboardAction(getWhiteboardAction(wbIsLock ? 'lock' : 'unlock'));
+        whiteboardAction(getWhiteboardAction(wbIsLock ? 'verrouiller' : 'déverrouiller'));
     }
 }
 
@@ -8736,9 +8736,6 @@ function whiteboardAction(config) {
 function handleWhiteboardAction(config, logMe = true) {
     const { peer_name, action, color } = config;
 
-    if (logMe) {
-        userLog('toast', `${icons.user} ${peer_name} \n whiteboard action: ${action}`);
-    }
     switch (action) {
         case 'bgcolor':
             wbCanvasBackgroundColor(color);
@@ -9622,7 +9619,7 @@ function userLog(type, message, timer = 3000) {
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: timer,
+                timer: 2500,
                 timerProgressBar: true,
             });
             Toast.fire({
@@ -9668,7 +9665,7 @@ function msgHTML(icon, imageUrl, title, html, position = 'center') {
  * @param {string} position of the toast
  * @param {integer} timer ms before to hide
  */
-function msgPopup(icon, message, position, timer = 1000) {
+function msgPopup(icon, message, position, timer = 2500) {
     const Toast = Swal.mixin({
         background: 'white',
         toast: true,

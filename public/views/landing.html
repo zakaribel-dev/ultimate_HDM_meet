@@ -57,7 +57,6 @@
         <!-- JavaScripts -->
         <link rel="stylesheet" href="../css/landing.css">
 
-        <script async src="../js/umami.js"></script>
     </head>
     <body>
 
@@ -184,9 +183,9 @@
                                         joinRoom();
                                     }
                                 };
-                          
                                         function joinRoom() {
                                             let roomName = document.getElementById('roomName').value.trim();
+
                                             if (roomName !== '') {
                                                 window.location.href = '/join/' + roomName;
                                                 window.localStorage.lastRoom = roomName;

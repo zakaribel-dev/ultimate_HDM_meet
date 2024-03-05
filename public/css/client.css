@@ -831,9 +831,7 @@ button:hover {
 #datetimePicker {
     padding: 10px;
     text-align: center;
-    color: white;
-    background: black;
-    border: none;
+    color: blue;
     border-radius: 5px;
 }
 
@@ -1332,9 +1330,7 @@ input:checked + .slider:before {
     background: #376df9;
 }
 
-.img-about {
-    margin: 0 !important;
-}
+
 
 /*--------------------------------------------------------------
 # Fade in page on load 
@@ -1532,45 +1528,7 @@ progress {
     border-radius: 5px;
 }
 
-/*--------------------------------------------------------------
-# About
---------------------------------------------------------------*/
 
-#about {
-    cursor: default;
-    /*text-decoration: none;*/
-}
-
-#about a {
-    color: #fff;
-    text-decoration: none;
-}
-
-#about a:hover {
-    color: var(--hover-color);
-    transition: all 0.3s ease-in-out;
-}
-
-#about img {
-    cursor: pointer;
-    border-radius: 10px;
-}
-
-#about button {
-    border: none;
-    width: 170px;
-    height: 40px;
-    font-size: 1.2rem;
-    background: linear-gradient(100deg, #376df9 0, #ff5fa0 var(--msger-bubble-width), #ffc55a 100%);
-    box-shadow: 0 0 6px 0 rgb(251 255 0 / 82%);
-    color: #ffffff;
-    transition: background 0.23s;
-    cursor: pointer;
-}
-
-#about button:hover {
-    font-weight: bold;
-}
 
 /*--------------------------------------------------------------
 # Speech bar
