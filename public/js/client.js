@@ -1161,14 +1161,11 @@ async function handleConnect() {
 function handleServerInfo(config) {
     console.log('13. Server info', config);
 
-    const { peers_count, host_protected, user_auth, is_presenter, survey, redirect, rec_prioritize_h264 } = config;
+    const { peers_count, host_protected, user_auth, is_presenter, redirect } = config;
 
     isHostProtected = host_protected;
     isPeerAuthEnabled = user_auth;
 
-    // Get survey settings from server
-    surveyActive = survey.active;
-    surveyURL = survey.url;
 
     // Get redirect settings from server
     (redirectActive = redirect.active), (redirectURL = redirect.url);

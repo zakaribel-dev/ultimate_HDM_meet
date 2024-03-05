@@ -328,7 +328,6 @@ app.get(['/logged'], (req, res) => {
 
 // handle login on host protected
 app.post(['/login'], (req, res) => {
-    //
     const ip = getIP(req);
     log.debug(`Request login to host from: ${ip}`, req.body);
 
@@ -338,7 +337,6 @@ app.post(['/login'], (req, res) => {
 
     // Peer valid going to auth as host
     if (hostCfg.protected && isPeerValid && !hostCfg.authenticated) {
-        const ip = getIP(req);
         hostCfg.authenticated = true;
         authHost = new Host(ip, true);
         log.debug('HOST LOGIN OK', { ip: ip, authorized: authHost.isAuthorized(ip) });
@@ -351,7 +349,8 @@ app.post(['/login'], (req, res) => {
     // Peer auth valid
     if (isPeerValid) {
         log.debug('PEER LOGIN OK', { ip: ip, authorized: true });
-        const token = jwt.sign({ username: username, password: password, presenter: false }, jwtCfg.JWT_KEY, {
+        const isPresenter = roomPresenters && roomPresenters.includes(username);
+        const token = jwt.sign({ username: username, password: password, presenter: isPresenter }, jwtCfg.JWT_KEY, {
             expiresIn: jwtCfg.JWT_EXP,
         });
         return res.status(200).json({ message: token });
@@ -359,6 +358,7 @@ app.post(['/login'], (req, res) => {
         return res.status(401).json({ message: 'unauthorized' });
     }
 });
+
 
 
 
